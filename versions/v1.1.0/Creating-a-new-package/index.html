@@ -1,677 +1,210 @@
-
-
-
-<!doctype html>
-<html lang="en" class="no-js">
-  <head>
-    
-      <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width,initial-scale=1">
-      
-      
-        <link rel="canonical" href="https://dune-daq.github.io/dont-readme/versions/v1.1.0/Creating-a-new-package/">
-      
-      
-      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.0">
-    
-    
-      
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="canonical" href="https://dune-timing.github.io/versions/v1.1.0/Creating-a-new-package/">
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
         <title>Creating a new package - DAQ Software Suite</title>
-      
-    
-    
-      <link rel="stylesheet" href="../../../assets/stylesheets/main.b5d04df8.min.css">
-      
-      
-    
-    
-    
-      
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
-        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
-      
-    
-    
-    
-    
-      
-    
-    
-  </head>
-  
-  
-    <body dir="ltr">
-  
-    
-    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
-    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
-    <label class="md-overlay" for="__drawer"></label>
-    <div data-md-component="skip">
-      
-        
-        <a href="#setting-up-a-development-area" class="md-skip">
-          Skip to content
-        </a>
-      
-    </div>
-    <div data-md-component="announce">
-      
-    </div>
-    
-      <header class="md-header" data-md-component="header">
-  <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="https://dune-daq.github.io/dont-readme" title="DAQ Software Suite" class="md-header-nav__button md-logo" aria-label="DAQ Software Suite">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 
-    </a>
-    <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
-    </label>
-    <div class="md-header-nav__title" data-md-component="header-title">
-      
-        <div class="md-header-nav__ellipsis">
-          <span class="md-header-nav__topic md-ellipsis">
-            DAQ Software Suite
-          </span>
-          <span class="md-header-nav__topic md-ellipsis">
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">DAQ Software Suite</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href="../../.." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Coding-style/" class="nav-link">Coding style</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Developers-Guide/" class="nav-link">Developer's Guide</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../../../Glossary-of-Terms/" class="nav-link">Glossary of Terms</a>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Versions <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Devel</a>
+    <ul class="dropdown-menu">
             
-              Creating a new package
+<li>
+    <a href="../../devel/Compiling-and-running/" class="dropdown-item">Compiling and running</a>
+</li>
             
-          </span>
-        </div>
-      
-    </div>
-    
-      <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-      </label>
-      
-<div class="md-search" data-md-component="search" role="dialog">
-  <label class="md-search__overlay" for="__search"></label>
-  <div class="md-search__inner" role="search">
-    <form class="md-search__form" name="search">
-      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
-      <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </label>
-      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
-      </button>
-    </form>
-    <div class="md-search__output">
-      <div class="md-search__scrollwrap" data-md-scrollfix>
-        <div class="md-search-result" data-md-component="search-result">
-          <div class="md-search-result__meta">
-            Initializing search
-          </div>
-          <ol class="md-search-result__list"></ol>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
-    
-      <div class="md-header-nav__source">
-        
-<a href="https://github.com/DUNE-DAQ/dont-readme" title="Go to repository" class="md-source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
-    DUNE-DAQ
-  </div>
-</a>
-      </div>
-    
-  </nav>
-</header>
-    
-    <div class="md-container" data-md-component="container">
-      
-        
-      
-      
-        
-      
-      <main class="md-main" data-md-component="main">
-        <div class="md-main__inner md-grid">
-          
+<li>
+    <a href="../../devel/Creating-a-new-package/" class="dropdown-item">Creating a new package</a>
+</li>
             
-              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
-  <label class="md-nav__title" for="__drawer">
-    <a href="https://dune-daq.github.io/dont-readme" title="DAQ Software Suite" class="md-nav__button md-logo" aria-label="DAQ Software Suite">
-      
-  
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
-
-    </a>
-    DAQ Software Suite
-  </label>
-  
-    <div class="md-nav__source">
-      
-<a href="https://github.com/DUNE-DAQ/dont-readme" title="Go to repository" class="md-source">
-  <div class="md-source__icon md-icon">
-    
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
-  </div>
-  <div class="md-source__repository">
-    DUNE-DAQ
-  </div>
-</a>
-    </div>
-  
-  <ul class="md-nav__list" data-md-scrollfix>
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../.." title="Home" class="md-nav__link">
-      Home
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../../Coding-style/" title="Coding style" class="md-nav__link">
-      Coding style
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../../Developers-Guide/" title="Developer's Guide" class="md-nav__link">
-      Developer's Guide
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../../Glossary-of-Terms/" title="Glossary of Terms" class="md-nav__link">
-      Glossary of Terms
-    </a>
-  </li>
-
-    
-      
-      
-      
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" checked>
-    
-    <label class="md-nav__link" for="nav-5">
-      Versions
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Versions" data-md-level="1">
-      <label class="md-nav__title" for="nav-5">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        Versions
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-1" type="checkbox" id="nav-5-1">
-    
-    <label class="md-nav__link" for="nav-5-1">
-      Devel
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="Devel" data-md-level="2">
-      <label class="md-nav__title" for="nav-5-1">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        Devel
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../devel/Compiling-and-running/" title="Compiling and running" class="md-nav__link">
-      Compiling and running
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../devel/Creating-a-new-package/" title="Creating a new package" class="md-nav__link">
-      Creating a new package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../devel/Step-by-step-instructions-for-creating-your-own-DAQModule-package/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../devel/Testing/" title="Testing" class="md-nav__link">
-      Testing
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-2" type="checkbox" id="nav-5-2">
-    
-    <label class="md-nav__link" for="nav-5-2">
-      V1.0.0
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="V1.0.0" data-md-level="2">
-      <label class="md-nav__title" for="nav-5-2">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        V1.0.0
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../v1.0.0/Compiling-and-running/" title="Compiling and running" class="md-nav__link">
-      Compiling and running
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../v1.0.0/Creating-a-new-package/" title="Creating a new package" class="md-nav__link">
-      Creating a new package
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../v1.0.0/Step-by-step-instructions-for-creating-your-own-DAQModule-package/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../v1.0.0/Testing/" title="Testing" class="md-nav__link">
-      Testing
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-    
-      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5-3" type="checkbox" id="nav-5-3" checked>
-    
-    <label class="md-nav__link" for="nav-5-3">
-      V1.1.0
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
-      </span>
-    </label>
-    <nav class="md-nav" aria-label="V1.1.0" data-md-level="2">
-      <label class="md-nav__title" for="nav-5-3">
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-        </span>
-        V1.1.0
-      </label>
-      <ul class="md-nav__list" data-md-scrollfix>
-        
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Compiling-and-running/" title="Compiling and running" class="md-nav__link">
-      Compiling and running
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-  
-
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Creating a new package
-        <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
-        </span>
-      </label>
-    
-    <a href="./" title="Creating a new package" class="md-nav__link md-nav__link--active">
-      Creating a new package
-    </a>
-    
-      
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up-a-development-area" class="md-nav__link">
-    Setting up a development area
-  </a>
-  
+<li>
+    <a href="../../devel/Step-by-step-instructions-for-creating-your-own-DAQModule-package/" class="dropdown-item">Introduction</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#a-packages-subdirectory-structure" class="md-nav__link">
-    A package's subdirectory structure
-  </a>
-  
+            
+<li>
+    <a href="../../devel/Testing/" class="dropdown-item">Testing</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#coding-rules" class="md-nav__link">
-    Coding rules
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#your-projects-cmakeliststxt-file" class="md-nav__link">
-    Your project's CMakeLists.txt file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#some-general-comments-about-cmake" class="md-nav__link">
-    Some general comments about CMake
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#if-your-package-relies-on-nonstandard-dependencies" class="md-nav__link">
-    If your package relies on nonstandard dependencies
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installing-your-project-as-a-local-package" class="md-nav__link">
-    Installing your project as a local package
-  </a>
-  
-</li>
-      
     </ul>
-  
-</nav>
-    
   </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Step-by-step-instructions-for-creating-your-own-DAQModule-package/" title="Introduction" class="md-nav__link">
-      Introduction
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../Testing/" title="Testing" class="md-nav__link">
-      Testing
-    </a>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-        
-      </ul>
-    </nav>
-  </li>
-
-    
-  </ul>
-</nav>
-                  </div>
-                </div>
-              </div>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">V1.0.0</a>
+    <ul class="dropdown-menu">
             
+<li>
+    <a href="../../v1.0.0/Compiling-and-running/" class="dropdown-item">Compiling and running</a>
+</li>
             
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
-      </span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#setting-up-a-development-area" class="md-nav__link">
-    Setting up a development area
-  </a>
-  
+<li>
+    <a href="../../v1.0.0/Creating-a-new-package/" class="dropdown-item">Creating a new package</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#a-packages-subdirectory-structure" class="md-nav__link">
-    A package's subdirectory structure
-  </a>
-  
+            
+<li>
+    <a href="../../v1.0.0/Step-by-step-instructions-for-creating-your-own-DAQModule-package/" class="dropdown-item">Introduction</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#coding-rules" class="md-nav__link">
-    Coding rules
-  </a>
-  
+            
+<li>
+    <a href="../../v1.0.0/Testing/" class="dropdown-item">Testing</a>
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#your-projects-cmakeliststxt-file" class="md-nav__link">
-    Your project's CMakeLists.txt file
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#some-general-comments-about-cmake" class="md-nav__link">
-    Some general comments about CMake
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#if-your-package-relies-on-nonstandard-dependencies" class="md-nav__link">
-    If your package relies on nonstandard dependencies
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installing-your-project-as-a-local-package" class="md-nav__link">
-    Installing your project as a local package
-  </a>
-  
-</li>
-      
     </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">V1.1.0</a>
+    <ul class="dropdown-menu">
             
-          
-          <div class="md-content">
-            <article class="md-content__inner md-typeset">
-              
-                
-                
-                  
-                
-                
-                  <h1>Creating a new package</h1>
-                
-                <h2 id="setting-up-a-development-area">Setting up a development area</h2>
+<li>
+    <a href="../Compiling-and-running/" class="dropdown-item">Compiling and running</a>
+</li>
+            
+<li>
+    <a href="./" class="dropdown-item active">Creating a new package</a>
+</li>
+            
+<li>
+    <a href="../Step-by-step-instructions-for-creating-your-own-DAQModule-package/" class="dropdown-item">Introduction</a>
+</li>
+            
+<li>
+    <a href="../Testing/" class="dropdown-item">Testing</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../Compiling-and-running/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../Step-by-step-instructions-for-creating-your-own-DAQModule-package/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/sparamesvarab/Dune-timing-documentation" class="nav-link">DUNE-DAQ</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#setting-up-a-development-area" class="nav-link">Setting up a development area</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#a-packages-subdirectory-structure" class="nav-link">A package's subdirectory structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#coding-rules" class="nav-link">Coding rules</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#your-projects-cmakeliststxt-file" class="nav-link">Your project's CMakeLists.txt file</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#some-general-comments-about-cmake" class="nav-link">Some general comments about CMake</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#if-your-package-relies-on-nonstandard-dependencies" class="nav-link">If your package relies on nonstandard dependencies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#installing-your-project-as-a-local-package" class="nav-link">Installing your project as a local package</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="setting-up-a-development-area">Setting up a development area</h2>
 <p>To create a new package, you'll want to install a DUNE-DAQ development environment and then create a new CMake project for the package. How to install and build the DUNE-DAQ development environment is described [[here|Compiling-and-running-under-v1.1.0]].</p>
 <p>By the time you've set up the development environment as described in the linked instructions, you'll have already downloaded, built, and locally installed the CMake project for appfwk. You'll likely also have noticed that <code>./appfwk</code> is a git repo; you'll want your project to reside in a git repo as well. </p>
 <h2 id="a-packages-subdirectory-structure">A package's subdirectory structure</h2>
 <p>To learn a bit more about how to structure your package so that it can be incorporated into the DUNE DAQ software suite, we'll play with a contrived package called "toylibrary". It's actually contained within a subdirectory of the daq-buildtools repo; however, in order to be able to build toylibrary we'll want to copy it into the base directory of the development area. Assuming you're already in the base directory, just do </p>
 <pre><code>cp -rp daq-buildtools/toylibrary .
 </code></pre>
-
 <p>You can now build it using the normal commands:</p>
 <pre><code>. ./setup_build_environment
 ./build_daq_software.sh --install --pkgname toylibrary
 </code></pre>
-
 <p>In terms of its actual functionality, it's pretty useless (it contains a class which can wrap an integer, and another class which can print that wrapped integer). However, its functionality is beside the point; toylibrary contains many features which DUNE DAQ packages have in common, in particular DUNE DAQ packages which provide a libraries other developers want to link against. In fact, if you run <code>ls appfwk</code> and <code>ls toylibrary</code>, you'll notice many subdirectories in common. These include:</p>
 <ul>
 <li><em>src</em>: contains the source files meant to be built into the package's shared object library/libraries</li>
@@ -688,17 +221,14 @@
 <pre><code>cmake_minimum_required(VERSION 3.12)
 project(toylibrary VERSION 1.1.0)
 </code></pre>
-
 <p>Next, we want to make CMake functions written specifically for DUNE DAQ development available. Near the top of the file, you'll see the following:</p>
 <pre><code>set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../daq-buildtools/cmake ${CMAKE_MODULE_PATH})
 include(DAQ)
 </code></pre>
-
 <p>This is currently (Aug-5-2020) how we ensure that the CMakeLists.txt file has access to the standard DUNE DAQ CMake functions. It imports the <code>DAQ</code> CMake module which is located in the daq-buildtools repo that's downloaded when you ran quick-start.sh. Note that by convention all functions/macros within the module begin with <code>daq_</code>, so as to distinguish them from functions/macros from CMake modules written outside of DUNE DAQ. </p>
 <p>The next step is to call a macro from the <code>DAQ</code> module which sets up a standard DUNE CMake environment for your CMakeLists.txt file:</p>
 <pre><code>daq_setup_environment()
 </code></pre>
-
 <p>To get specific, daq_setup_environment() will do the following:
 * Enforce the use of standard, extension-free C++17
 * Ensure libraries are built as shared, rather than static
@@ -713,17 +243,14 @@ include(DAQ)
 
 add_library(               toylibrary       src/IntPrinter.cpp )
 </code></pre>
-
 <p>Here, <code>daq_point_build_to(src)</code> will ensure that the ensuing target(s) -- here, the toylibrary shared object file -- will be placed in a subdirectory of <code>./build/toylibrary</code> directory (build directory) whose path mirrors the path of the source itself. To get concrete, this command means that after a successful build we'll have an executable, <code>./build/toylibrary/src/libtoylibrary.so</code>, where that path is given relative to the base of your entire development area. Without this function call it would end up as <code>./build/toylibrary/libtoylibrary.so</code>. With a small project such as toylibrary the benefit may not be obvious, but it becomes more so when many libraries, applications, unit tests, etc. are built within a project.  </p>
 <p>Another function currently provided by the DAQ CMake module is <code>daq_add_unit_test</code>. Examples of this function's use can be found at the bottom of the <code>toylibrary/CMakeLists.txt</code> file, e.g.:</p>
 <pre><code>daq_add_unit_test(ValueWrapper_test)
 </code></pre>
-
 <p>If you pass this function a name, e.g., <code>MyComponent_test</code>, it will create a unit test executable off of a source file called <code>&lt;your packagename&gt;/unittest/MyComponent_test.cxx</code>, and handle linking in the Boost unit test dependencies. You can also optionally have it link in other libraries by providing them as arguments; in the above example, this isn't needed because ValueWrapper is a template class which is instantiated within the unit test code itself. You can see this linking, however, in <code>./appfwk/CMakeLists.txt</code>.  </p>
 <p>At the bottom of CMakeLists.txt, you'll see the following function:</p>
 <pre><code>daq_install(TARGETS toylibrary)
 </code></pre>
-
 <p>The signature of this function is hopefully self-explanatory; basically when you call it it will install the targets (executables, shared object libraries) you wish to make available to others who want to use your package in a directory called <code>./install/&lt;pkgname&gt;</code> (here, of course, that would be <code>./install/toylibrary</code>). You'll also need to add a special file to your project for this function to work; this is discussed more fully in the "Installing your project as a local package" section later in this document. </p>
 <h2 id="some-general-comments-about-cmake">Some general comments about CMake</h2>
 <p>While a lot can be learned from looking at the CMakeLists.txt file and reading this documentation, realize that CMake is a full-blown programming language, and like any programming language, the more familiar you are with it the easier life will be. It's extensively documented online; in particular, if you want to learn more about specific CMake functions you can go <a href="https://cmake.org/cmake/help/v3.17/manual/cmake-commands.7.html">here</a> for a reference guide of CMake commands, or, if you've sourced <code>setup_build_environment</code> (so CMake is set up), you can even learn at the command line via <code>cmake --help-command &lt;name of command&gt;</code></p>
@@ -734,7 +261,6 @@ add_library(               toylibrary       src/IntPrinter.cpp )
 <pre><code>setup &lt;dependency_I_am_introducing&gt; &lt;version_of_the_dependency&gt; # And perhaps qualifiers, e.g., -q e19:debug
 setup_returns=$setup_returns&quot;$? &quot;
 </code></pre>
-
 <p>The <code>setup_build_environment</code> script uses <code>setup_returns</code> to check that all the packages were setup without a nonzero return value. </p>
 <p>You may also want to set up additional environment variables for your new project in <code>setup_build_environment</code>. </p>
 <h2 id="installing-your-project-as-a-local-package">Installing your project as a local package</h2>
@@ -742,7 +268,6 @@ setup_returns=$setup_returns&quot;$? &quot;
 <pre><code># If other users call this, they can use your code
 find_package(mypackage)
 </code></pre>
-
 <p>For starters, you'll want to call the DAQ module's <code>daq_install</code> function at the bottom of your CMakeLists.txt file. How to do so has already been described earlier in this document. </p>
 <p>You'll also want to make sure that projects which link in your code know where to find your headers. If you look in toylibrary's CMakeLists.txt file, you'll see the following:</p>
 <pre><code>target_include_directories(toylibrary
@@ -751,13 +276,11 @@ find_package(mypackage)
                            $&lt;INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}&gt;
                            )
 </code></pre>
-
 <p>...and what this will do is tell targets in other projects where to find headers when they link in the appfwk library. The code uses <a href="https://cmake.org/cmake/help/latest/manual/cmake-generator-expressions.7.html">CMake generator expressions</a> so that the target will know either to look in a subdirectory of your <code>./install</code> area or a local build directory depending on whether or not it's using an installed version of appfwk. ${CMAKE_INSTALL_INCLUDEDIR} is set in the GNUInstallDirs module, which is imported as a consequence of importing our DAQ module. The value of the variable defaults to "include" and it's unlikely you'd want to change it.  </p>
 <p>A major thing you should be aware of is that when you call CMake's <code>find_package</code> function, it will look for a file with the name <code>mypackageConfig.cmake</code> in a predetermined set of directories. The <code>daq_setup_environment</code> function discussed at the top of this page ensures that one of those directories is your local <code>./install/mypackage</code> directory. What a standard <code>mypackageConfig.cmake</code> file should look like with modern CMake is documented in many places on the web, but in order to make life as easy as possible there's a templatized version of this file in the daq-buildtools package. Assuming you've got a <code>./mypackage</code> repo in your development area, you can do the following:</p>
 <pre><code>cd ./mypackage
 cp ../daq-buildtools/configs/Config.cmake.in mypackageConfig.cmake.in
 </code></pre>
-
 <p>and then let's look the contents of <code>mypackageConfig.cmake.in</code>:</p>
 <pre><code>
 @PACKAGE_INIT@
@@ -773,93 +296,89 @@ include(${targets_file})
 
 check_required_components(@PROJECT_NAME@)
 </code></pre>
-
 <p>The only part of this file you need to worry about is the comment. In place of this comment, you'll want to call CMake's <code>find_dependency</code> function (details <a href="https://cmake.org/cmake/help/latest/module/CMakeFindDependencyMacro.html">here</a>) for each package that mypackage depends on; this ensures that developers who call <code>find_package(mypackage)</code> don't need to have explicit <code>find_package</code> calls on these dependencies.</p>
 <p>You can see a simple example of this kind of file with <code>./toylibrary/toylibraryConfig.cmake.in</code>, and a slightly less simple example with <code>./appfwk/appfwkConfig.cmake.in</code>.</p>
 <p>Once you've edited this file as described, from the base of your development area you can then run </p>
 <pre><code>./build_daq_software.sh --install --pkgname mypackage
 </code></pre>
-
-<p>without receiving an error message informing you that installation isn't an option. </p>
-                
-              
-              
-                
-
-
-              
-            </article>
-          </div>
+<p>without receiving an error message informing you that installation isn't an option. </p></div>
+            </div>
         </div>
-      </main>
-      
-        
-<footer class="md-footer">
-  
-    <div class="md-footer-nav">
-      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
-        
-          <a href="../Compiling-and-running/" title="Compiling and running" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Previous
-                </span>
-                Compiling and running
-              </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
             </div>
-          </a>
-        
-        
-          <a href="../Step-by-step-instructions-for-creating-your-own-DAQModule-package/" title="Introduction" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                Introduction
-              </div>
+            <div class="modal-footer">
             </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
-        
-      </nav>
+        </div>
     </div>
-  
-  <div class="md-footer-meta md-typeset">
-    <div class="md-footer-meta__inner md-grid">
-      <div class="md-footer-copyright">
-        
-        Made with
-        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-          Material for MkDocs
-        </a>
-      </div>
-      
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
     </div>
-  </div>
-</footer>
-      
-    </div>
-    
-      <script src="../../../assets/javascripts/vendor.92ffa368.min.js"></script>
-      <script src="../../../assets/javascripts/bundle.5123e3d4.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
-      
-      <script>
-        app = initialize({
-          base: "../../..",
-          features: [],
-          search: Object.assign({
-            worker: "../../../assets/javascripts/worker/search.a68abb33.min.js"
-          }, typeof search !== "undefined" && search)
-        })
-      </script>
-      
-    
-  </body>
+</div>
+
+    </body>
 </html>
