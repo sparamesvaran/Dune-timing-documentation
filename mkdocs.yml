@@ -1,7 +1,7 @@
 site_name: DAQ Software Suite
-site_url: https://dune-daq.github.io/dont-readme 
+site_url: https://dune-timing.github.io/ 
 edit_uri: ""
-repo_url: https://github.com/DUNE-DAQ/dont-readme
+repo_url: https://github.com/sparamesvarab/Dune-timing-documentation
 repo_name: DUNE-DAQ
 theme:
   name: material
