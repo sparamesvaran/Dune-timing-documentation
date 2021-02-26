@@ -1,0 +1,11 @@
+site_name: DUNE Timing documentation
+site_url: https://dune-timing.github.io/ 
+edit_uri: ""
+repo_url: https://github.com/sparamesvarab/Dune-timing-documentation
+repo_name: DUNE-Timing
+theme:
+  name: material
+
+# nav:
+    # - Home: 'Home.md'
+    # ll- About: 'about.md'
