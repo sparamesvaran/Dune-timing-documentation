@@ -3,8 +3,26 @@ site_url: https://dune-timing.github.io/
 edit_uri: ""
 repo_url: https://github.com/sparamesvarab/Dune-timing-documentation
 repo_name: DUNE-Timing
-theme:
-  name: material
+
+
+  theme:
+  palette:
+
+    # Light mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+
+    # Dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
 # nav:
     # - Home: 'Home.md'
