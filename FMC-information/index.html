@@ -347,7 +347,12 @@
 <h2 id="software">Software:</h2>
 <p>The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
 The  pdt-butler has the following software dependencies:  boost libraries (v1.53), python 2.7, and the uhal package (installation instructions can be found from https://ipbus.web.cern.ch/ipbus/doc/user/html/software/installation.html). </p>
-<h1 id="installation-instructions-for-the-protodune-timing-software-can-be-found-below">Installation instructions for the ProtoDUNE timing software can be found below.</h1>
+<h1 id="installation-instructions-for-the-protodune-timing-software">Installation instructions for the ProtoDUNE timing software</h1>
+<p>To set up the pdtbutler, please execute the following steps on the control machine.</p>
+<ul>
+<li>Clone the software repository, (ssh key access to gitlab required) 
+git clone ssh://git@gitlab.cern.ch:7999/protoDUNE-SP-DAQ/timing-board-software.gitCompile the C++ layercd timing-board-softwaremakeSource the environmentsource tests/env.sh</li>
+</ul>
                 
               
               
