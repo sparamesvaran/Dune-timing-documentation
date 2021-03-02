@@ -1,63 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://dune-timing.github.io/</loc>
-     <lastmod>2021-02-26</lastmod>
+     <lastmod>2021-03-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://dune-timing.github.io/FMCtesting/</loc>
-     <lastmod>2021-02-26</lastmod>
+     <lastmod>2021-03-02</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://dune-timing.github.io/Timing-Board-Software/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/devel/Compiling-and-running/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/devel/Creating-a-new-package/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/devel/Step-by-step-instructions-for-creating-your-own-DAQModule-package/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/devel/Testing/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/v1.0.0/Compiling-and-running/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/v1.0.0/Creating-a-new-package/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/v1.0.0/Step-by-step-instructions-for-creating-your-own-DAQModule-package/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/v1.0.0/Testing/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/v1.1.0/Compiling-and-running/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/v1.1.0/Creating-a-new-package/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/v1.1.0/Step-by-step-instructions-for-creating-your-own-DAQModule-package/</loc>
-     <lastmod>2021-02-26</lastmod>
-     <changefreq>daily</changefreq>
-    </url><url>
-     <loc>https://dune-timing.github.io/versions/v1.1.0/Testing/</loc>
-     <lastmod>2021-02-26</lastmod>
+     <lastmod>2021-03-02</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
