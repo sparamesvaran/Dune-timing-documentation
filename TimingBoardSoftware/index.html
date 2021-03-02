@@ -16,7 +16,7 @@
     
     
       
-        <title>Developer's Guide - DUNE Timing documentation.</title>
+        <title>TimingBoardSoftware - DUNE Timing documentation.</title>
       
     
     
@@ -63,11 +63,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#developers-guide" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -96,7 +91,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              Developer's Guide
+              TimingBoardSoftware
             
           </span>
         </div>
@@ -237,48 +232,10 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Developer's Guide
-          <span class="md-nav__icon md-icon"></span>
-        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Developer's Guide
+        TimingBoardSoftware
       </a>
-      
-        
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contributing-to-the-application-framework" class="md-nav__link">
-    Contributing to the Application Framework
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-the-c-code-linter-dune-cpp-style-checksh" class="md-nav__link">
-    Using the C++ code linter, dune-cpp-style-check.sh
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
       
     </li>
   
@@ -291,72 +248,15 @@
               </div>
             
             
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contributing-to-the-application-framework" class="md-nav__link">
-    Contributing to the Application Framework
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#using-the-c-code-linter-dune-cpp-style-checksh" class="md-nav__link">
-    Using the C++ code linter, dune-cpp-style-check.sh
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
-            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                <h1 id="developers-guide">Developer's Guide</h1>
-<h2 id="contributing-to-the-application-framework">Contributing to the Application Framework</h2>
-<p>During the prototyping stage for the Application Framework, it is recommended to clone the repository and make your changes in a branch. The branch name should be of the form <code>user/ShortDescription</code> for clarity in the code browser. This option allows other users to base their changes off of yours, if needed, in a more transparent way than forking.</p>
-<p>A code linting tool has been developed by John Freeman that helps <em>partially</em> ensure that code is compliant with our style guide, though many potential guideline violations are impossible for a script (as opposed to a human) to catch. Details are below.  </p>
-<p>Once your changes are stable, a pull request should be initiated.
-Pull requests follow this procedure:
-1. The code will be reviewed during an Application Framework meeting
-   1.  Comments related to the pull request's intended changes should be incorporated into the branch
-   1.  Other comments that may arise should be captured as Github issues
-1. The pull request will be allowed to sit for a few days to make sure that there are no further comments
-1. Once all comments have been resolved, the Application Framework managers will meet and merge the pull request</p>
-<h2 id="using-the-c-code-linter-dune-cpp-style-checksh">Using the C++ code linter, dune-cpp-style-check.sh</h2>
-<p>Before code is merged into the develop branch, it should be in conformance with the DUNE C++ Style Guide, available <a href="https://github.com/DUNE-DAQ/styleguide/blob/develop/dune-daq-cppguide.md">here</a>. As mentioned above, a subset of the guidelines are capable of being automatically checked for using a linter tool, <code>dune-cpp-style-check.sh</code>. Obtaining <code>dune-cpp-style-check.sh</code> is straightforward, as it resides in the same repository, "styleguide", as the actual text of the style guide:</p>
-<pre><code>git clone https://github.com/DUNE-DAQ/styleguide/
-</code></pre>
-<p>In the instructions which follow, it's assumed you've installed the styleguide repo in $STYLEGUIDE_DIR, and the location of your build output is $BUILD_DIR. First, please read the instructions on how to use the linter, which are printed to output when you run it without arguments:</p>
-<pre><code>$STYLEGUIDE_DIR/cpplint/dune-cpp-style-check.sh
-</code></pre>
-<p>Then, keeping in mind that the most likely location of the JSON compile_commands.json file is in the build directory, to run the linter on a file do the following:</p>
-<pre><code>$STYLEGUIDE_DIR/cpplint/dune-cpp-style-check.sh $BUILD_DIR &lt;name of file&gt;
-</code></pre>
-<p>Be aware that the linter simply doesn't have the capability to catch some violations of the guidelines (e.g., figuring out that you've declared data <code>protected</code> instead of <code>private</code> in a class, or that you've written a function that's meant to do a bunch of unrelated things), and is no substitute for having read and understood the guide. </p>
+                  <h1>TimingBoardSoftware</h1>
+                
+                <p>Test</p>
                 
               
               
