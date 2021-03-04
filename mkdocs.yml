@@ -1,13 +1,39 @@
 site_name: DUNE Timing documentation.
-site_url: https://dune-timing.github.io/ 
+site_url: https://sparamesvaran.github.io/Dune-timing-documentation 
 edit_uri: ""
-repo_url: https://github.com/sparamesvarab/Dune-timing-documentation
+repo_url: https://github.com/sparamesvaran/Dune-timing-documentation
 repo_name: DUNE-Timing
 
 theme:
   name: material
   palette:
-    scheme: slate
-    primary: deep purple
+    - scheme: slate
+      primary: deep purple
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off-outline
+        name: Switch to dark mode
+    - scheme: slate
+      primary: blue
+      accent: blue
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to light mode
 
-    
+
+
+
+  features:
+    - toc.integrate
+    - navigation.sections
+    - navigation.tabs
+markdown_extensions:
+  - pymdownx.highlight
+  - pymdownx.superfences    
+  - pymdownx.inlinehilite
+  - pymdownx.details
+
+  - toc:
+      permalink: true
+      toc_depth: 5
+
