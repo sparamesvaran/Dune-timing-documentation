@@ -9,14 +9,14 @@
       
       
       
-        <link rel="canonical" href="https://dune-timing.github.io/FMC-information/">
+        <link rel="canonical" href="https://dune-timing.github.io/Setting-up-the-FMC/">
       
       <link rel="shortcut icon" href="../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.8">
     
     
       
-        <title>FMC information - DUNE Timing documentation.</title>
+        <title>Setting up the FMC - DUNE Timing documentation.</title>
       
     
     
@@ -96,7 +96,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              FMC information
+              Setting up the FMC
             
           </span>
         </div>
@@ -180,7 +180,7 @@
 
   <li class="md-tabs__item">
     <a href="./" class="md-tabs__link md-tabs__link--active">
-      FMC information
+      Setting up the FMC
     </a>
   </li>
 
@@ -275,12 +275,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          FMC information
+          Setting up the FMC
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        FMC information
+        Setting up the FMC
       </a>
       
         
@@ -384,7 +384,7 @@
               
                 
                 
-                  <h1>FMC information</h1>
+                  <h1>Setting up the FMC</h1>
                 
                 <p>To enable testing and commissioning of the timing system, a timing FPGA mezzanine card(FMC) was designed and fabricated.  The FMC has SFP, Ethernet,  and  U.FL  connectors,  and  can  act  as  either  as  a  timing  master  or endpoint, depending on the firmware uploaded onto the carrier board FPGA.</p>
 <p>The following instructions will allow you to set up and control the timing FMC. </p>
@@ -446,6 +446,25 @@ The  pdt-butler has the following software dependencies:  boost libraries (v1.53
 <p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">part</span> <span class="mi">0</span> <span class="n">configure</span></code></p>
 <p>Check status of timing partition 0</p>
 <p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">part</span> <span class="mi">0</span> <span class="n">status</span></code></p>
+<p>??? question "What should the status command return?"</p>
+<div class="highlight"><pre><span></span><code>Material for MkDocs bundles useful and common plugins while trying not to
+blow up the size of the official image. If the plugin you want to use is
+not included, create a new `Dockerfile` and extend the official Docker image
+with your custom installation routine:
+
+``` Dockerfile
+FROM squidfunk/mkdocs-material
+RUN pip install ...
+```
+
+Next, you can build the image with the following command:
+
+```
+docker build -t squidfunk/mkdocs-material .
+```
+
+The new image can be used exactly like the official image.
+</code></pre></div>
                 
               
               
