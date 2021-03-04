@@ -273,8 +273,6 @@
       
       <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
       
-        
-      
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
           FMC information
@@ -289,8 +287,6 @@
 <nav class="md-nav md-nav--secondary" aria-label="Table of contents">
   
   
-    
-  
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon"></span>
@@ -299,15 +295,55 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#pre-requisites" class="md-nav__link">
+    Pre-requisites:
+  </a>
+  
+    <nav class="md-nav" aria-label="Pre-requisites:">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#hardware" class="md-nav__link">
     Hardware:
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#software" class="md-nav__link">
     Software:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-instructions-for-the-protodune-timing-software" class="md-nav__link">
+    Installation instructions for the ProtoDUNE timing software
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation instructions for the ProtoDUNE timing software">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#firmware" class="md-nav__link">
+    Firmware
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-the-fmc" class="md-nav__link">
+    Configuring the FMC
   </a>
   
 </li>
@@ -348,19 +384,21 @@
               
                 
                 
+                  <h1>FMC information</h1>
+                
                 <p>To enable testing and commissioning of the timing system, a timing FPGA mezzanine card(FMC) was designed and fabricated.  The FMC has SFP, Ethernet,  and  U.FL  connectors,  and  can  act  as  either  as  a  timing  master  or endpoint, depending on the firmware uploaded onto the carrier board FPGA.</p>
 <p>The following instructions will allow you to set up and control the timing FMC. </p>
-<h1 id="pre-requisites">Pre-requisites:<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h1>
-<h2 id="hardware">Hardware:<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h2>
+<h2 id="pre-requisites">Pre-requisites:<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
+<h3 id="hardware">Hardware:<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Timing FMC hosted on an Enclustra Mars PM3  base  board  with  an  Enclustra  Mars  AX3  FPGA  module</li>
 <li>JTAG  cable</li>
 <li>Linux machine (for control and firmware uploads) running CentOS xxx</li>
 </ul>
-<h2 id="software">Software:<a class="headerlink" href="#software" title="Permanent link">&para;</a></h2>
+<h3 id="software">Software:<a class="headerlink" href="#software" title="Permanent link">&para;</a></h3>
 <p>The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
 The  pdt-butler has the following software dependencies:  boost libraries (v1.53), python 2.7, and the uhal package (installation instructions can be found from https://ipbus.web.cern.ch/ipbus/doc/user/html/software/installation.html). </p>
-<h1 id="installation-instructions-for-the-protodune-timing-software">Installation instructions for the ProtoDUNE timing software<a class="headerlink" href="#installation-instructions-for-the-protodune-timing-software" title="Permanent link">&para;</a></h1>
+<h2 id="installation-instructions-for-the-protodune-timing-software">Installation instructions for the ProtoDUNE timing software<a class="headerlink" href="#installation-instructions-for-the-protodune-timing-software" title="Permanent link">&para;</a></h2>
 <p>To set up the pdtbutler, please execute the following steps on the control machine.</p>
 <ul>
 <li>
@@ -392,7 +430,7 @@ The  pdt-butler has the following software dependencies:  boost libraries (v1.53
 </ul>
 </li>
 </ul>
-<h2 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h2>
+<h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
 <p>The timing firmware repisitory is located here: https://pdts-fw.web.cern.ch/pdts-fw</p>
 <p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit</p>
 <ul>
