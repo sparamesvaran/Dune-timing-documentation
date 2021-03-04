@@ -149,6 +149,53 @@
       
       
         
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+
+
+  <li class="md-tabs__item">
+    <a href="." class="md-tabs__link md-tabs__link--active">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="FMC-information/" class="md-tabs__link">
+      FMC information
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="TimingBoardSoftware/" class="md-tabs__link">
+      TimingBoardSoftware
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
       
       <main class="md-main" data-md-component="main">
         <div class="md-main__inner md-grid">
@@ -162,10 +209,12 @@
 
 
 
+  
+
 
   
 
-<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="https://dune-timing.github.io/" title="DUNE Timing documentation." class="md-nav__button md-logo" aria-label="DUNE Timing documentation.">
       
@@ -318,7 +367,7 @@
       <script>
         app = initialize({
           base: ".",
-          features: ['toc.integrate'],
+          features: ['toc.integrate', 'navigation.sections', 'navigation.tabs'],
           search: Object.assign({
             worker: "assets/javascripts/worker/search.9c0e82ba.min.js"
           }, typeof search !== "undefined" && search)
