@@ -446,25 +446,18 @@ The  pdt-butler has the following software dependencies:  boost libraries (v1.53
 <p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">part</span> <span class="mi">0</span> <span class="n">configure</span></code></p>
 <p>Check status of timing partition 0</p>
 <p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">part</span> <span class="mi">0</span> <span class="n">status</span></code></p>
-<p>??? question "What should the status command return?"</p>
-<div class="highlight"><pre><span></span><code>Material for MkDocs bundles useful and common plugins while trying not to
+<details class="question"><summary>What should the status command return?</summary><p>Material for MkDocs bundles useful and common plugins while trying not to
 blow up the size of the official image. If the plugin you want to use is
-not included, create a new `Dockerfile` and extend the official Docker image
-with your custom installation routine:
-
-``` Dockerfile
-FROM squidfunk/mkdocs-material
-RUN pip install ...
-```
-
-Next, you can build the image with the following command:
-
-```
-docker build -t squidfunk/mkdocs-material .
-```
-
-The new image can be used exactly like the official image.
+not included, create a new <code>Dockerfile</code> and extend the official Docker image
+with your custom installation routine:</p>
+<div class="highlight"><pre><span></span><code><span class="k">FROM</span> <span class="s">squidfunk/mkdocs-material</span>
+<span class="k">RUN</span> pip install ...
 </code></pre></div>
+<p>Next, you can build the image with the following command:</p>
+<div class="highlight"><pre><span></span><code>docker build -t squidfunk/mkdocs-material .
+</code></pre></div>
+<p>The new image can be used exactly like the official image.</p>
+</details>
                 
               
               
