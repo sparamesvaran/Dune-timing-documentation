@@ -389,6 +389,12 @@ The  pdt-butler has the following software dependencies:  boost libraries (v1.53
 <h2 id="configuring-the-fmc">Configuring the FMC</h2>
 <p>Reset the FMC:</p>
 <p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">io</span> <span class="n">PRIMARY</span> <span class="n">reset</span></code></p>
+<p>Set the time of the FMC master block:</p>
+<p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">synctime</span></code></p>
+<p>Configure timing partition 0</p>
+<p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">part</span> <span class="mi">0</span> <span class="n">configure</span></code></p>
+<p>Check status of timing partition 0</p>
+<p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">part</span> <span class="mi">0</span> <span class="n">status</span></code></p>
                 
               
               
