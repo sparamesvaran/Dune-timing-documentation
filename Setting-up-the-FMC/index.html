@@ -431,19 +431,17 @@ The  pdt-butler has the following software dependencies:  boost libraries (v1.53
 <h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
 <p>The timing firmware repisitory is located here: https://pdts-fw.web.cern.ch/pdts-fw</p>
 <p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit</p>
-<ul>
-<li>
-<p><code class="highlight"><span class="n">wget</span> <span class="n">XXX</span></code></p>
-<div class="highlight"><pre><span></span><code>wget xxx
-`#!python wget XXX`
+<div class="highlight"><pre><span></span><code>```
+wget xxx
+
+```
 </code></pre></div>
-</li>
-</ul>
 <p>Using Vivado or an alternative method, connect to the JTAG chain and program the FPGA with the firmware bit file. </p>
 <h2 id="configuring-the-fmc">Configuring the FMC<a class="headerlink" href="#configuring-the-fmc" title="Permanent link">&para;</a></h2>
 <p>Reset the FMC:</p>
-<p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">io</span> <span class="n">PRIMARY</span> <span class="n">reset</span></code></p>
-<p>Set the time of the FMC master block:</p>
+<p><div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset
+</code></pre></div>
+Set the time of the FMC master block:</p>
 <p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">synctime</span></code></p>
 <p>Configure timing partition 0</p>
 <p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">part</span> <span class="mi">0</span> <span class="n">configure</span></code></p>
