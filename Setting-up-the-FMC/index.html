@@ -440,7 +440,6 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 <div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset
 </code></pre></div>
 <p>??? info
-`#!python
 Created device PRIMARY
 Design 'ouroboros' on board 'fmc' on carrier 'enclustra-a35'
 Resetting PRIMARY
@@ -496,8 +495,7 @@ CDR freq: 36.4953250256</p>
 |    SYSINCAL_FLG   |  0x1  |
 |      XAXB_ERR     |  0x0  |
 |    XAXB_ERR_FLG   |  0x1  |
-+-------------------+-------+
-`</p>
++-------------------+-------+</p>
 <p>Set the time of the FMC master block:</p>
 <p><code class="highlight"><span class="n">pdtbutler</span> <span class="n">mst</span> <span class="n">PRIMARY</span> <span class="n">synctime</span></code></p>
 <p>Configure timing partition 0</p>
