@@ -8,7 +8,7 @@ The following instructions will allow you to set up and control the timing FMC.
 
 * Timing FMC hosted on an Enclustra Mars PM3  base  board  with  an  Enclustra  Mars  AX3  FPGA  module
 * JTAG  cable
-* Linux machine (for control and firmware uploads) running CentOS xxx
+* Linux machine (for control and firmware uploads) running CentOS 7
 
 
 ### Software: 
@@ -21,58 +21,238 @@ The  pdt-butler has the following software dependencies:  boost libraries (v1.53
 
 ## Installation instructions for the ProtoDUNE timing software 
 
-To set up the pdtbutler, please execute the following steps on the control machine.
+To set up the pdtbutler, please execute the following steps on the control machine (ssh key access to gitlab required).
 
-* Clone the software repository, (ssh key access to gitlab required) 
-
-	* `#!python git clone https://github.com/DUNE-DAQ/timing-board-software.git`
-
-* Checkout FMC set-up tag
-
-	* * `#!python git checkout relval/v6.0.0/b2`
-
-
-* Compile the C++ layer
-	*   `#!python make`
-
-* Source the environment
-	*  `#!python source tests/env.sh`
-
+```
+git clone https://github.com/DUNE-DAQ/timing-board-software.git
+git checkout relval/v6.0.0/b2
+make
+source tests/env.sh
+```
 
 ### Firmware 
-
-The timing firmware repisitory is located here: https://pdts-fw.web.cern.ch/pdts-fw
 
 Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit
 
  ```
- wget xxx
+ wget https://pdts-fw.web.cern.ch/pdts-fw/tags/relval/v5.3.0/b2/latest/ouroboros_pc053d_fmc_relval-v5-3-0-b2_sha-ac158d6a_runner-slu9p8x4-project-19909-concurrent-0_210301_1409.tgz
  
  ```
 
-Using Vivado or an alternative method, connect to the JTAG chain and program the FPGA with the firmware bit file. 
+Untar the directory and there will be a list of files including ouroboros_pc053d_fmc.bit.
+Using Vivado or an alternative method, connect to the JTAG chain and program the FPGA with this firmware bit file. 
 
-##Configuring the FMC
 
- Reset the FMC:
+!!! warning
+	The firwmare is currently hard-coding the IP address of the FMC to 192.168.100.16 - this IP has to be available on the network that the FMC is connected to.
+
+
+
+##Configuring the FMC for operation at 62.5MHz
+
+ Reset the FMC with a 62.5 MHz clock file; this will output the clock.
 
  ```
- pdtbutler io PRIMARY reset
+ pdtbutler io PRIMARY reset  --force-pll-cfg tests/etc/clock/devel/Si5394-RevA-94mst625-Registers.txt
 
  ```	
+
+??? info 
+	``` python
+	Created device PRIMARY
+	Design 'ouroboros' on board 'fmc' on carrier 'enclustra-a35'
+	Resetting PRIMARY
+	2021-03-09 16:16:56.276 pdt NOTICE   | PLL configuration file : Si5394-RevA-94mst625-Registers.txt
+	2021-03-09 16:16:56.280 pdt NOTICE   | Configuring PLL        : SI5394
+	2021-03-09 16:16:59.105 pdt NOTICE   | PLL configuration id   : 94mst625
+	-----------Hardware info----------
+	+----------------+---------------+
+	|   Board type   |      fmc      |
+	| Board revision |    kFMCRev3   |
+	|    Board UID   | 0x49162b67ce6 |
+	|  Carrier type  | enclustra-a35 |
+	|   Design type  |   ouroboros   |
+	+----------------+---------------+
+
+	------FMC IO state-----
+	+-------------+-------+
+	|   Register  | Value |
+	+-------------+-------+
+	|   cdr_lol   |  0x1  |
+	|   cdr_los   |  0x1  |
+	|   mmcm_ok   |  0x1  |
+	| mmcm_sticky |  0x0  |
+	|   sfp_flt   |  0x1  |
+	|   sfp_los   |  0x1  |
+	+-------------+-------+
+
+
+	PLL Clock frequency measurement:
+	PLL freq: 312.490080593
+	CDR freq: 36.4953250256
+
+
+	PLL configuration id   : 94mst625
+	-------PLL information------
+	+-----------------+--------+
+	|     Register    |  Value |
+	+-----------------+--------+
+	|   Device grade  |   0x0  |
+	| Device revision |   0x0  |
+	|   Part number   | 0x5394 |
+	+-----------------+--------+
+
+	----------PLL state----------
+	+-------------------+-------+
+	|      Register     | Value |
+	+-------------------+-------+
+	|      CAL_PLL      |  0x0  |
+	|        HOLD       |  0x1  |
+	|        LOL        |  0x1  |
+	|        LOS        |  0x0  |
+	|      LOSXAXB      |  0x0  |
+	|    LOSXAXB_FLG    |  0x1  |
+	|        OOF        |  0x0  |
+	|    OOF (sticky)   |  0xf  |
+	|   SMBUS_TIMEOUT   |  0x0  |
+	| SMBUS_TIMEOUT_FLG |  0x0  |
+	|      SYSINCAL     |  0x0  |
+	|    SYSINCAL_FLG   |  0x1  |
+	|      XAXB_ERR     |  0x0  |
+	|    XAXB_ERR_FLG   |  0x1  |
+	+-------------------+-------+
+	```
+
 Set the time of the FMC master block:
 
- `#!python pdtbutler mst PRIMARY synctime`
+```
+pdtbutler mst PRIMARY synctime
 
- Configure timing partition 0
+```
+??? info 
+	``` python
+		Created device PRIMARY
+	-----------Hardware info----------
+	+----------------+---------------+
+	|   Board type   |      fmc      |
+	| Board revision |    kFMCRev3   |
+	|    Board UID   | 0x49162b67ce6 |
+	|  Carrier type  | enclustra-a35 |
+	|   Design type  |   ouroboros   |
+	+----------------+---------------+
 
-`#!python pdtbutler mst PRIMARY part 0 configure`
+	Master FW rev: 0x50100, partitions: 4, channels: 5
+	2021-03-09 16:35:30.928 pdt NOTICE   | Old timestamp: 0x1387088a1, Thu, 01 Jan 1970 01:01:44 +0000
+	2021-03-09 16:35:30.929 pdt NOTICE   | New timestamp: 0x11eefb0ec7ae321, Tue, 09 Mar 2021 16:35:30 +0000
+	```
 
-Check status of timing partition 0
 
-`#!python pdtbutler mst PRIMARY part 0 status`
+Configure timing partition 0 - this will start sending out time pulses once per second.
 
-??? question "What should the status command return?"
+```
+pdtbutler mst PRIMARY part 0 configure
+
+```
+
+??? info 
+	``` python
+		Created device PRIMARY
+	-----------Hardware info----------
+	+----------------+---------------+
+	|   Board type   |      fmc      |
+	| Board revision |    kFMCRev3   |
+	|    Board UID   | 0x49162b67ce6 |
+	|  Carrier type  | enclustra-a35 |
+	|   Design type  |   ouroboros   |
+	+----------------+---------------+
+
+	Master FW rev: 0x50100, partitions: 4, channels: 5
+
+	Configuring partition 0
+	Trigger mask set to 0xf1
+	  Fake mask 0x1
+	  Phys mask 0xf
+	Partition 0 enabled and configured
+	```
+
+Check status of timing partition 0 - - the TimeSync cnts number in the final table below shows the number of pulses sent.
+
+```
+pdtbutler mst PRIMARY part 0 status 
+
+```
+
+??? info 
+	``` python
+	--------------Cmd gen counters--------------
+	+------+-----------------+-----------------+
+	|      | Accept counters | Reject counters |
+	+------+-----------------+-----------------+
+	| Chan |  cnts  |   hex  |  cnts  |   hex  |
+	+------+--------+--------+--------+--------+
+	|  0x0 |    0   |   0x0  |    0   |   0x0  |
+	|  0x1 |    0   |   0x0  |    0   |   0x0  |
+	|  0x2 |    0   |   0x0  |    0   |   0x0  |
+	|  0x3 |    0   |   0x0  |    0   |   0x0  |
+	|  0x4 |    0   |   0x0  |    0   |   0x0  |
+	+------+--------+--------+--------+--------+
+
+
+	=> Partition 0
+
+	---------Controls--------
+	+---------------+-------+
+	|    Register   | Value |
+	+---------------+-------+
+	|     buf_en    |  0x0  |
+	|   frag_mask   |  0x0  |
+	|    part_en    |  0x1  |
+	|  rate_ctrl_en |  0x1  |
+	|    run_req    |  0x0  |
+	| spill_gate_en |  0x1  |
+	|  trig_ctr_rst |  0x0  |
+	|    trig_en    |  0x0  |
+	|   trig_mask   |  0xf1 |
+	+---------------+-------+
+
+	--------State-------
+	+----------+-------+
+	| Register | Value |
+	+----------+-------+
+	|  buf_err |  0x0  |
+	| buf_warn |  0x0  |
+	|  in_run  |  0x0  |
+	| in_spill |  0x0  |
+	|  part_up |  0x1  |
+	|  run_int |  0x0  |
+	+----------+-------+
+
+	Event Counter: 0
+	Buffer status: OK
+	Buffer occupancy: 0
+
+	+-------------+-----------------+-----------------+
+	|             | Accept counters | Reject counters |
+	+-------------+-----------------+-----------------+
+	|     Cmd     |  cnts  |   hex  |  cnts  |   hex  |
+	+-------------+--------+--------+--------+--------+
+	|   TimeSync  |   53   |  0x35  |    0   |   0x0  |
+	|     Echo    |    0   |   0x0  |    0   |   0x0  |
+	|  SpillStart |    0   |   0x0  |    0   |   0x0  |
+	|  SpillStop  |    0   |   0x0  |    0   |   0x0  |
+	|   RunStart  |    0   |   0x0  |    0   |   0x0  |
+	|   RunStop   |    0   |   0x0  |    0   |   0x0  |
+	|   WibCalib  |    0   |   0x0  |    0   |   0x0  |
+	|   SSPCalib  |    0   |   0x0  |    0   |   0x0  |
+	|  FakeTrig0  |    0   |   0x0  |    0   |   0x0  |
+	|  FakeTrig1  |    0   |   0x0  |    0   |   0x0  |
+	|  FakeTrig2  |    0   |   0x0  |    0   |   0x0  |
+	|  FakeTrig3  |    0   |   0x0  |    0   |   0x0  |
+	|   BeamTrig  |    0   |   0x0  |    0   |   0x0  |
+	|  NoBeamTrig |    0   |   0x0  |    0   |   0x0  |
+	| ExtFakeTrig |    0   |   0x0  |    0   |   0x0  |
+	+-------------+--------+--------+--------+--------+
+	```
 
     
 
