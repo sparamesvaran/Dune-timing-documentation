@@ -397,37 +397,12 @@
 <p>The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
 The  pdt-butler has the following software dependencies:  boost libraries (v1.53), python 2.7, and the uhal package (installation instructions can be found from https://ipbus.web.cern.ch/ipbus/doc/user/html/software/installation.html). </p>
 <h2 id="installation-instructions-for-the-protodune-timing-software">Installation instructions for the ProtoDUNE timing software<a class="headerlink" href="#installation-instructions-for-the-protodune-timing-software" title="Permanent link">&para;</a></h2>
-<p>To set up the pdtbutler, please execute the following steps on the control machine.</p>
-<ul>
-<li>
-<p>Clone the software repository, (ssh key access to gitlab required) </p>
-<ul>
-<li><code class="highlight"><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">DUNE</span><span class="o">-</span><span class="n">DAQ</span><span class="o">/</span><span class="n">timing</span><span class="o">-</span><span class="n">board</span><span class="o">-</span><span class="n">software</span><span class="o">.</span><span class="n">git</span></code></li>
-</ul>
-</li>
-<li>
-<p>Checkout FMC set-up tag</p>
-<ul>
-<li>
-<ul>
-<li><code class="highlight"><span class="n">git</span> <span class="n">checkout</span> <span class="n">relval</span><span class="o">/</span><span class="n">v6</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="n">b2</span></code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>Compile the C++ layer</p>
-<ul>
-<li><code class="highlight"><span class="n">make</span></code></li>
-</ul>
-</li>
-<li>
-<p>Source the environment</p>
-<ul>
-<li><code class="highlight"><span class="n">source</span> <span class="n">tests</span><span class="o">/</span><span class="n">env</span><span class="o">.</span><span class="n">sh</span></code></li>
-</ul>
-</li>
-</ul>
+<p>To set up the pdtbutler, please execute the following steps on the control machine (ssh key access to gitlab required).</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/DUNE-DAQ/timing-board-software.git
+git checkout relval/v6.0.0/b2`
+make
+source tests/env.sh
+</code></pre></div>
 <h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
 <p>The timing firmware repisitory is located here: https://pdts-fw.web.cern.ch/pdts-fw</p>
 <p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit</p>
