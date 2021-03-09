@@ -404,14 +404,13 @@ make
 source tests/env.sh
 </code></pre></div>
 <h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
-<p>The timing firmware repisitory is located here: https://pdts-fw.web.cern.ch/pdts-fw</p>
 <p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit</p>
-<div class="highlight"><pre><span></span><code>wget ouroboros_pc053d_fmc_relval-v5-3-0-b2_sha-ac158d6a_runner-slu9p8x4-project-19909-concurrent-0_210301_1409.tgz
+<div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/tags/relval/v5.3.0/b2/latest/ouroboros_pc053d_fmc_relval-v5-3-0-b2_sha-ac158d6a_runner-slu9p8x4-project-19909-concurrent-0_210301_1409.tgz
 </code></pre></div>
 <p>Untar the directory and there will be a list of files including ouroboros_pc053d_fmc.bit.
 Using Vivado or an alternative method, connect to the JTAG chain and program the FPGA with this firmware bit file. </p>
 <h2 id="configuring-the-fmc-for-operation-at-625mhz">Configuring the FMC for operation at 62.5MHz<a class="headerlink" href="#configuring-the-fmc-for-operation-at-625mhz" title="Permanent link">&para;</a></h2>
-<p>Reset the FMC with a 62.5 MHz clock file:</p>
+<p>Reset the FMC with a 62.5 MHz clock file; this will output the clock.</p>
 <div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset  --force-pll-cfg tests/etc/clock/devel/Si5394-RevA-94mst625-Registers.txt
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
@@ -496,7 +495,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 <span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">09</span> <span class="mi">16</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mf">30.929</span> <span class="n">pdt</span> <span class="n">NOTICE</span>   <span class="o">|</span> <span class="n">New</span> <span class="n">timestamp</span><span class="p">:</span> <span class="mh">0x11eefb0ec7ae321</span><span class="p">,</span> <span class="n">Tue</span><span class="p">,</span> <span class="mi">09</span> <span class="n">Mar</span> <span class="mi">2021</span> <span class="mi">16</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">30</span> <span class="o">+</span><span class="mi">0000</span>
 </code></pre></div>
 </details>
-<p>Configure timing partition 0</p>
+<p>Configure timing partition 0 - this will start sending out time pulses once per second.</p>
 <div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 configure
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code>    <span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
@@ -519,7 +518,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </code></pre></div>
 </details>
 <p>Check status of timing partition 0</p>
-<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 status
+<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 status - the TimeSync cnts number in the final table below shows the number of pulses sent.
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="o">--------------</span><span class="n">Cmd</span> <span class="n">gen</span> <span class="n">counters</span><span class="o">--------------</span>
 <span class="o">+------+-----------------+-----------------+</span>
