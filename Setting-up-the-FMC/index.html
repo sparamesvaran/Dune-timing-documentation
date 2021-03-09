@@ -504,7 +504,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </code></pre></div>
 </details>
 <p>Set the time of the FMC master block:</p>
-<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY synctime`
+<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY synctime
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code>    <span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
 <span class="o">-----------</span><span class="n">Hardware</span> <span class="n">info</span><span class="o">----------</span>
@@ -522,11 +522,100 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </code></pre></div>
 </details>
 <p>Configure timing partition 0</p>
-<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 configure`
+<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 configure
 </code></pre></div>
+<details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code>    <span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
+<span class="o">-----------</span><span class="n">Hardware</span> <span class="n">info</span><span class="o">----------</span>
+<span class="o">+----------------+---------------+</span>
+<span class="o">|</span>   <span class="n">Board</span> <span class="nb">type</span>   <span class="o">|</span>      <span class="n">fmc</span>      <span class="o">|</span>
+<span class="o">|</span> <span class="n">Board</span> <span class="n">revision</span> <span class="o">|</span>    <span class="n">kFMCRev3</span>   <span class="o">|</span>
+<span class="o">|</span>    <span class="n">Board</span> <span class="n">UID</span>   <span class="o">|</span> <span class="mh">0x49162b67ce6</span> <span class="o">|</span>
+<span class="o">|</span>  <span class="n">Carrier</span> <span class="nb">type</span>  <span class="o">|</span> <span class="n">enclustra</span><span class="o">-</span><span class="n">a35</span> <span class="o">|</span>
+<span class="o">|</span>   <span class="n">Design</span> <span class="nb">type</span>  <span class="o">|</span>   <span class="n">ouroboros</span>   <span class="o">|</span>
+<span class="o">+----------------+---------------+</span>
+
+<span class="n">Master</span> <span class="n">FW</span> <span class="n">rev</span><span class="p">:</span> <span class="mh">0x50100</span><span class="p">,</span> <span class="n">partitions</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">channels</span><span class="p">:</span> <span class="mi">5</span>
+
+<span class="n">Configuring</span> <span class="n">partition</span> <span class="mi">0</span>
+<span class="n">Trigger</span> <span class="n">mask</span> <span class="nb">set</span> <span class="n">to</span> <span class="mh">0xf1</span>
+  <span class="n">Fake</span> <span class="n">mask</span> <span class="mh">0x1</span>
+  <span class="n">Phys</span> <span class="n">mask</span> <span class="mh">0xf</span>
+<span class="n">Partition</span> <span class="mi">0</span> <span class="n">enabled</span> <span class="ow">and</span> <span class="n">configured</span>
+</code></pre></div>
+</details>
 <p>Check status of timing partition 0</p>
-<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 status`
+<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 status
 </code></pre></div>
+<details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="o">--------------</span><span class="n">Cmd</span> <span class="n">gen</span> <span class="n">counters</span><span class="o">--------------</span>
+<span class="o">+------+-----------------+-----------------+</span>
+<span class="o">|</span>      <span class="o">|</span> <span class="n">Accept</span> <span class="n">counters</span> <span class="o">|</span> <span class="n">Reject</span> <span class="n">counters</span> <span class="o">|</span>
+<span class="o">+------+-----------------+-----------------+</span>
+<span class="o">|</span> <span class="n">Chan</span> <span class="o">|</span>  <span class="n">cnts</span>  <span class="o">|</span>   <span class="nb">hex</span>  <span class="o">|</span>  <span class="n">cnts</span>  <span class="o">|</span>   <span class="nb">hex</span>  <span class="o">|</span>
+<span class="o">+------+--------+--------+--------+--------+</span>
+<span class="o">|</span>  <span class="mh">0x0</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mh">0x1</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mh">0x2</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mh">0x3</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mh">0x4</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">+------+--------+--------+--------+--------+</span>
+
+
+<span class="o">=&gt;</span> <span class="n">Partition</span> <span class="mi">0</span>
+
+<span class="o">---------</span><span class="n">Controls</span><span class="o">--------</span>
+<span class="o">+---------------+-------+</span>
+<span class="o">|</span>    <span class="n">Register</span>   <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+---------------+-------+</span>
+<span class="o">|</span>     <span class="n">buf_en</span>    <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">frag_mask</span>   <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>    <span class="n">part_en</span>    <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">rate_ctrl_en</span> <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>    <span class="n">run_req</span>    <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span> <span class="n">spill_gate_en</span> <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">trig_ctr_rst</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>    <span class="n">trig_en</span>    <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">trig_mask</span>   <span class="o">|</span>  <span class="mh">0xf1</span> <span class="o">|</span>
+<span class="o">+---------------+-------+</span>
+
+<span class="o">--------</span><span class="n">State</span><span class="o">-------</span>
+<span class="o">+----------+-------+</span>
+<span class="o">|</span> <span class="n">Register</span> <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+----------+-------+</span>
+<span class="o">|</span>  <span class="n">buf_err</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span> <span class="n">buf_warn</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">in_run</span>  <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span> <span class="n">in_spill</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">part_up</span> <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">run_int</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">+----------+-------+</span>
+
+<span class="n">Event</span> <span class="n">Counter</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">Buffer</span> <span class="n">status</span><span class="p">:</span> <span class="n">OK</span>
+<span class="n">Buffer</span> <span class="n">occupancy</span><span class="p">:</span> <span class="mi">0</span>
+
+<span class="o">+-------------+-----------------+-----------------+</span>
+<span class="o">|</span>             <span class="o">|</span> <span class="n">Accept</span> <span class="n">counters</span> <span class="o">|</span> <span class="n">Reject</span> <span class="n">counters</span> <span class="o">|</span>
+<span class="o">+-------------+-----------------+-----------------+</span>
+<span class="o">|</span>     <span class="n">Cmd</span>     <span class="o">|</span>  <span class="n">cnts</span>  <span class="o">|</span>   <span class="nb">hex</span>  <span class="o">|</span>  <span class="n">cnts</span>  <span class="o">|</span>   <span class="nb">hex</span>  <span class="o">|</span>
+<span class="o">+-------------+--------+--------+--------+--------+</span>
+<span class="o">|</span>   <span class="n">TimeSync</span>  <span class="o">|</span>   <span class="mi">53</span>   <span class="o">|</span>  <span class="mh">0x35</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>     <span class="n">Echo</span>    <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">SpillStart</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">SpillStop</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">RunStart</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">RunStop</span>   <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">WibCalib</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">SSPCalib</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">FakeTrig0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">FakeTrig1</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">FakeTrig2</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">FakeTrig3</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">BeamTrig</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">NoBeamTrig</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span> <span class="n">ExtFakeTrig</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">+-------------+--------+--------+--------+--------+</span>
+</code></pre></div>
+</details>
                 
               
               
