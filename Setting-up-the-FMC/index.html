@@ -391,7 +391,7 @@
 <ul>
 <li>Timing FMC hosted on an Enclustra Mars PM3  base  board  with  an  Enclustra  Mars  AX3  FPGA  module</li>
 <li>JTAG  cable</li>
-<li>Linux machine (for control and firmware uploads) running CentOS xxx</li>
+<li>Linux machine (for control and firmware uploads) running CentOS 7</li>
 </ul>
 <h3 id="software">Software:<a class="headerlink" href="#software" title="Permanent link">&para;</a></h3>
 <p>The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
@@ -409,8 +409,8 @@ source tests/env.sh
 </code></pre></div>
 <p>Untar the directory and there will be a list of files including ouroboros_pc053d_fmc.bit.
 Using Vivado or an alternative method, connect to the JTAG chain and program the FPGA with this firmware bit file. </p>
-<details class="warning"><summary>Warning</summary><p>The firwmare is currently hard-coding the IP address of the FMC to 192.168.100.16 - this IP has to be available on the network that the FMC is connected to.</p>
-</details>
+<p>!!! warning
+    The firwmare is currently hard-coding the IP address of the FMC to 192.168.100.16 - this IP has to be available on the network that the FMC is connected to.</p>
 <h2 id="configuring-the-fmc-for-operation-at-625mhz">Configuring the FMC for operation at 62.5MHz<a class="headerlink" href="#configuring-the-fmc-for-operation-at-625mhz" title="Permanent link">&para;</a></h2>
 <p>Reset the FMC with a 62.5 MHz clock file; this will output the clock.</p>
 <div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset  --force-pll-cfg tests/etc/clock/devel/Si5394-RevA-94mst625-Registers.txt
