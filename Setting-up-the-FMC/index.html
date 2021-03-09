@@ -409,6 +409,8 @@ source tests/env.sh
 </code></pre></div>
 <p>Untar the directory and there will be a list of files including ouroboros_pc053d_fmc.bit.
 Using Vivado or an alternative method, connect to the JTAG chain and program the FPGA with this firmware bit file. </p>
+<details class="warning"><summary>Warning</summary><p>The firwmare is currently hard-coding the IP address of the FMC to 192.168.100.16 - this IP has to be available on the network that the FMC is connected to.</p>
+</details>
 <h2 id="configuring-the-fmc-for-operation-at-625mhz">Configuring the FMC for operation at 62.5MHz<a class="headerlink" href="#configuring-the-fmc-for-operation-at-625mhz" title="Permanent link">&para;</a></h2>
 <p>Reset the FMC with a 62.5 MHz clock file; this will output the clock.</p>
 <div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset  --force-pll-cfg tests/etc/clock/devel/Si5394-RevA-94mst625-Registers.txt
@@ -517,8 +519,8 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 <span class="n">Partition</span> <span class="mi">0</span> <span class="n">enabled</span> <span class="ow">and</span> <span class="n">configured</span>
 </code></pre></div>
 </details>
-<p>Check status of timing partition 0</p>
-<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 status - the TimeSync cnts number in the final table below shows the number of pulses sent.
+<p>Check status of timing partition 0 - - the TimeSync cnts number in the final table below shows the number of pulses sent.</p>
+<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 status 
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="o">--------------</span><span class="n">Cmd</span> <span class="n">gen</span> <span class="n">counters</span><span class="o">--------------</span>
 <span class="o">+------+-----------------+-----------------+</span>
