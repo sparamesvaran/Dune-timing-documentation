@@ -398,7 +398,8 @@
 The  pdt-butler has the following software dependencies:  boost libraries (v1.53), python 2.7, and the uhal package (installation instructions can be found from https://ipbus.web.cern.ch/ipbus/doc/user/html/software/installation.html). </p>
 <h2 id="installation-instructions-for-the-protodune-timing-software">Installation instructions for the ProtoDUNE timing software<a class="headerlink" href="#installation-instructions-for-the-protodune-timing-software" title="Permanent link">&para;</a></h2>
 <p>To set up the pdtbutler, please execute the following steps on the control machine (ssh key access to gitlab required).</p>
-<div class="highlight"><pre><span></span><code>git clone https://github.com/DUNE-DAQ/timing-board-software.git
+<div class="highlight"><pre><span></span><code>git clone https://github.com/DUNE-DAQ/timing.git
+cd timing
 git checkout relval/v6.0.0/b2
 make
 source tests/env.sh
