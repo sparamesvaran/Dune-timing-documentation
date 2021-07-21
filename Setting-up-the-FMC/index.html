@@ -314,6 +314,19 @@
   
 </li>
         
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-instructions-for-the-protodune-timing-software" class="md-nav__link">
+    Installation instructions for the ProtoDUNE timing software
+  </a>
+  
+    <nav class="md-nav" aria-label="Installation instructions for the ProtoDUNE timing software">
+      <ul class="md-nav__list">
+        
           <li class="md-nav__item">
   <a href="#firmware" class="md-nav__link">
     Firmware
@@ -381,17 +394,15 @@
 <li>Linux machine (for control and firmware uploads) running CentOS 7</li>
 </ul>
 <h3 id="software">Software:<a class="headerlink" href="#software" title="Permanent link">&para;</a></h3>
-<p>To install the DUNE DAQ software go to this link:
-https://dune-daq-sw.readthedocs.io/en/latest/packages/daq-buildtools/</p>
-<p>and follow the instructions to set up a working area. Follow these instructions down to 'Cloning and building a package repo'
-and then use these instructions to get the latest timing software and build it. </p>
-<div class="highlight"><pre><span></span><code>git clone https://github.com/DUNE-DAQ/timing.git
-source dbt-env.sh
-dbt-workarea-env
-dbt-build.sh
-</code></pre></div>
 <p>The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
 The  pdt-butler has the following software dependencies:  boost libraries (v1.53), python 2.7, and the uhal package (installation instructions can be found from https://ipbus.web.cern.ch/ipbus/doc/user/html/software/installation.html). </p>
+<h2 id="installation-instructions-for-the-protodune-timing-software">Installation instructions for the ProtoDUNE timing software<a class="headerlink" href="#installation-instructions-for-the-protodune-timing-software" title="Permanent link">&para;</a></h2>
+<p>To set up the pdtbutler, please execute the following steps on the control machine (ssh key access to gitlab required).</p>
+<div class="highlight"><pre><span></span><code>git clone https://github.com/DUNE-DAQ/timing-board-software.git
+git checkout relval/v6.0.0/b2
+make
+source tests/env.sh
+</code></pre></div>
 <h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
 <p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit</p>
 <div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/tags/relval/v5.3.0/b2/latest/ouroboros_pc053d_fmc_relval-v5-3-0-b2_sha-ac158d6a_runner-slu9p8x4-project-19909-concurrent-0_210301_1409.tgz
@@ -404,7 +415,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </div>
 <h2 id="configuring-the-fmc-for-operation-at-625mhz">Configuring the FMC for operation at 62.5MHz<a class="headerlink" href="#configuring-the-fmc-for-operation-at-625mhz" title="Permanent link">&para;</a></h2>
 <p>Reset the FMC with a 62.5 MHz clock file; this will output the clock.</p>
-<div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset 
+<div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset  --force-pll-cfg tests/etc/clock/devel/Si5394-RevA-94mst625-Registers.txt
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
 <span class="n">Design</span> <span class="s1">&#39;ouroboros&#39;</span> <span class="n">on</span> <span class="n">board</span> <span class="s1">&#39;fmc&#39;</span> <span class="n">on</span> <span class="n">carrier</span> <span class="s1">&#39;enclustra-a35&#39;</span>
