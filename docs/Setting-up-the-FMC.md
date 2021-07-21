@@ -12,21 +12,23 @@ The following instructions will allow you to set up and control the timing FMC.
 
 
 ### Software: 
-To install the DUNE DAQ software go to this link:
-https://dune-daq-sw.readthedocs.io/en/latest/packages/daq-buildtools/
-
-and follow the instructions to set up a working area. Follow these instructions down to 'Cloning and building a package repo'
-and the use these instructions to get the latest timing software.
-
-```
-git clone https://github.com/DUNE-DAQ/timing.git
-source dbt-env.sh
-dbt-workarea-env
-dbt-build.sh
-```
 
 The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
 The  pdt-butler has the following software dependencies:  boost libraries (v1.53), python 2.7, and the uhal package (installation instructions can be found from https://ipbus.web.cern.ch/ipbus/doc/user/html/software/installation.html). 
+
+
+
+
+## Installation instructions for the ProtoDUNE timing software 
+
+To set up the pdtbutler, please execute the following steps on the control machine (ssh key access to gitlab required).
+
+```
+git clone https://github.com/DUNE-DAQ/timing-board-software.git
+git checkout relval/v6.0.0/b2
+make
+source tests/env.sh
+```
 
 ### Firmware 
 
@@ -51,7 +53,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
  Reset the FMC with a 62.5 MHz clock file; this will output the clock.
 
  ```
- pdtbutler io PRIMARY reset 
+ pdtbutler io PRIMARY reset  --force-pll-cfg tests/etc/clock/devel/Si5394-RevA-94mst625-Registers.txt
 
  ```	
 
