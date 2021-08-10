@@ -314,19 +314,6 @@
   
 </li>
         
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#installation-instructions-for-the-protodune-timing-software" class="md-nav__link">
-    Installation instructions for the ProtoDUNE timing software
-  </a>
-  
-    <nav class="md-nav" aria-label="Installation instructions for the ProtoDUNE timing software">
-      <ul class="md-nav__list">
-        
           <li class="md-nav__item">
   <a href="#firmware" class="md-nav__link">
     Firmware
@@ -395,17 +382,16 @@
 </ul>
 <h3 id="software">Software:<a class="headerlink" href="#software" title="Permanent link">&para;</a></h3>
 <p>The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
-The  pdt-butler has the following software dependencies:  boost libraries (v1.53), python 2.7, and the uhal package (installation instructions can be found from https://ipbus.web.cern.ch/ipbus/doc/user/html/software/installation.html). </p>
-<h2 id="installation-instructions-for-the-protodune-timing-software">Installation instructions for the ProtoDUNE timing software<a class="headerlink" href="#installation-instructions-for-the-protodune-timing-software" title="Permanent link">&para;</a></h2>
-<p>To set up the pdtbutler, please execute the following steps on the control machine (ssh key access to gitlab required).</p>
-<div class="highlight"><pre><span></span><code>git clone https://github.com/DUNE-DAQ/timing-board-software.git
-git checkout relval/v6.0.0/b2
-make
-source tests/env.sh
-</code></pre></div>
+The pdtbutler along with the timing software backend is part of the DUNE DAQ installation. To get the installation instructions please go to the following link:</p>
+<p>https://github.com/DUNE-DAQ/minidaqapp/wiki/Instructions-for-setting-up-a-v2.8.0-development-environment</p>
+<p>Follow the instructions for Step 1 and Step 3.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You will need access to CVMFS to follow the above instructions. </p>
+</div>
 <h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
 <p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit</p>
-<div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/tags/relval/v5.3.0/b2/latest/ouroboros_pc053d_fmc_relval-v5-3-0-b2_sha-ac158d6a_runner-slu9p8x4-project-19909-concurrent-0_210301_1409.tgz
+<div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/mr/31/latest/ouroboros_pc053d_fmc_mr31_sha-324ff0b0_runner-slu9p8x4-project-19909-concurrent-25_210720_1421.tgz
 </code></pre></div>
 <p>Untar the directory and there will be a list of files including ouroboros_pc053d_fmc.bit.
 Using Vivado or an alternative method, connect to the JTAG chain and program the FPGA with this firmware bit file. </p>
@@ -415,7 +401,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </div>
 <h2 id="configuring-the-fmc-for-operation-at-625mhz">Configuring the FMC for operation at 62.5MHz<a class="headerlink" href="#configuring-the-fmc-for-operation-at-625mhz" title="Permanent link">&para;</a></h2>
 <p>Reset the FMC with a 62.5 MHz clock file; this will output the clock.</p>
-<div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset  --force-pll-cfg tests/etc/clock/devel/Si5394-RevA-94mst625-Registers.txt
+<div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset  
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
 <span class="n">Design</span> <span class="s1">&#39;ouroboros&#39;</span> <span class="n">on</span> <span class="n">board</span> <span class="s1">&#39;fmc&#39;</span> <span class="n">on</span> <span class="n">carrier</span> <span class="s1">&#39;enclustra-a35&#39;</span>
