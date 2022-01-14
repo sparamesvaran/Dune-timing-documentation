@@ -25,7 +25,7 @@ Follow the instructions for Step 1 and Step 3.
 
 ### Firmware 
 
-Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit
+Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit - test
 
  ```
  wget https://pdts-fw.web.cern.ch/pdts-fw/mr/31/latest/ouroboros_pc053d_fmc_mr31_sha-324ff0b0_runner-slu9p8x4-project-19909-concurrent-25_210720_1421.tgz
