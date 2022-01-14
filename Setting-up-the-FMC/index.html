@@ -371,12 +371,12 @@
                 
                   <h1>Setting up the FMC</h1>
                 
-                <p>To enable testing and commissioning of the timing system, a timing FPGA mezzanine card(FMC) was designed and fabricated.  The FMC has SFP, Ethernet,  and  U.FL  connectors,  and  can  act  as  either  as  a  timing  master  or endpoint, depending on the firmware uploaded onto the carrier board FPGA.</p>
+                <p>To enable testing and commissioning of the timing system, a timing FPGA mezzanine card(FMC) was designed and fabricated.  The FMC has SFP, Ethernet,  and  U.FL  connectors,  and  can  act  as  either  as  a  timing  master  or endpoint, depending on the firmware uploaded onto the carrier board FPGA. The carrier board can be either an Enclustra PX3/AX3 or a Digilent Nexsys Video card. There are different firmware images produced depending on which baseboard you have. </p>
 <p>The following instructions will allow you to set up and control the timing FMC. </p>
 <h2 id="pre-requisites">Pre-requisites:<a class="headerlink" href="#pre-requisites" title="Permanent link">&para;</a></h2>
 <h3 id="hardware">Hardware:<a class="headerlink" href="#hardware" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Timing FMC hosted on an Enclustra Mars PM3  base  board  with  an  Enclustra  Mars  AX3  FPGA  module</li>
+<li>Timing FMC hosted on an Enclustra Mars PM3  base  board  with  an  Enclustra  Mars  AX3  FPGA  module or Digilent Nexsys Video card</li>
 <li>JTAG  cable</li>
 <li>Linux machine (for control and firmware uploads) running CentOS 7</li>
 </ul>
@@ -390,14 +390,16 @@ The pdtbutler along with the timing software backend is part of the DUNE DAQ ins
 <p>You will need access to CVMFS to follow the above instructions. </p>
 </div>
 <h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
-<p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit - test</p>
-<div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/mr/31/latest/ouroboros_pc053d_fmc_mr31_sha-324ff0b0_runner-slu9p8x4-project-19909-concurrent-25_210720_1421.tgz
+<p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit - remember to download the file which corresponds to the baseboard you have. The file below corresponds to the Enclustra baseboard, which is the default and therefore is not specified in the title of the file. The file for the Nexsys baseboard is listed next. If the clock frequency is not specified in the file as 50 MHz, then the file will be 62.5MHz.</p>
+<div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/ci/tags/v6.2.0/pipeline3416367/ouroboros_pc053d_fmc_v6-2-0_sha-91dc3cf5_runner-slu9p8x4-project-19909-concurrent-5_220106_1706.tgz
 </code></pre></div>
-<p>Untar the directory and there will be a list of files including ouroboros_pc053d_fmc.bit.
+<div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/ci/tags/v6.2.0/pipeline3416367/ouroboros_pc053d_nexys_video_v6-2-0_sha-91dc3cf5_runner-slu9p8x4-project-19909-concurrent-13_220106_1707.tgz
+</code></pre></div>
+<p>Untar the directory and there will be a list of files including the relevant bit files.
 Using Vivado or an alternative method, connect to the JTAG chain and program the FPGA with this firmware bit file. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The firwmare is currently hard-coding the IP address of the FMC to 192.168.100.16 - this IP has to be available on the network that the FMC is connected to.</p>
+<p>The firwmare is currently using the Ethers file on the PC to assign IP addresses. You must edit this file to assign the MAC address of the baseboard (coming from the baseboard UID) to the IP you wish to assign it to. The IP address for the standard operation of an FMC, acting as master and/or endpoint is 192.168.200.16.</p>
 </div>
 <h2 id="configuring-the-fmc-for-operation-at-625mhz">Configuring the FMC for operation at 62.5MHz<a class="headerlink" href="#configuring-the-fmc-for-operation-at-625mhz" title="Permanent link">&para;</a></h2>
 <p>Reset the FMC with a 62.5 MHz clock file; this will output the clock.</p>
