@@ -333,6 +333,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#configuring-the-endpoint" class="md-nav__link">
+    Configuring the endpoint
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -582,6 +589,16 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 <span class="o">+-------------+--------+--------+--------+--------+</span>
 </code></pre></div>
 </details>
+<h2 id="configuring-the-endpoint">Configuring the endpoint<a class="headerlink" href="#configuring-the-endpoint" title="Permanent link">&para;</a></h2>
+<p>First reset the Endpoint:</p>
+<div class="highlight"><pre><span></span><code>pdtbutler io $EPT reset
+</code></pre></div>
+<p>Enable the address you wish to, in this exame we enable address 0x2.</p>
+<div class="highlight"><pre><span></span><code>pdtbutler ept ${EPT} 0 enable -a 2
+</code></pre></div>
+<p>Check the status of the endpoint.</p>
+<div class="highlight"><pre><span></span><code>pdtbutler ept ${EPT} 0 status
+</code></pre></div>
                 
               
               
