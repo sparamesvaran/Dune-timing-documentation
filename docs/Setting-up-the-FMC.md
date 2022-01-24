@@ -253,7 +253,30 @@ pdtbutler mst PRIMARY part 0 status
 	+-------------+--------+--------+--------+--------+
 	```
 
+##Configuring the endpoint
+
+First reset the Endpoint:
+
+```
+pdtbutler io $EPT reset
+
+```
+
+Enable the address you wish to, in this exame we enable address 0x2.
+
     
+```
+pdtbutler ept ${EPT} 0 enable -a 2
+
+```
+
+Check the status of the endpoint.
+
+```
+pdtbutler ept ${EPT} 0 status
+
+```
+
 
 
 
