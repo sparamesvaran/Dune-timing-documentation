@@ -25,7 +25,7 @@ Follow the instructions for Step 1 and Step 3.
 
 ### Firmware 
 
-Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit - remember to download the file which corresponds to the baseboard you have. The file below corresponds to the Enclustra baseboard, which is the default and therefore is not specified in the title of the file. The file for the Nexsys baseboard is listed next. If the clock frequency is not specified in the file as 50 MHz, then the file will be 62.5MHz.
+Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit - remember to download the file which corresponds to the baseboard you have. The file below corresponds to the Enclustra baseboard, which is the default and therefore is not specified in the title of the file. The file for the Nexsys baseboard is listed next. If the clock frequency is not specified in the file as 50 MHz, then the file will be 62.5MHz. The below is an example only - please contact the Timing development team via the #timing-integration Slack channel on the DUNE workspace to check which version of the firmware to use. 
 
  ```
  wget https://pdts-fw.web.cern.ch/pdts-fw/ci/tags/v6.2.0/pipeline3416367/ouroboros_pc053d_fmc_v6-2-0_sha-91dc3cf5_runner-slu9p8x4-project-19909-concurrent-5_220106_1706.tgz
