@@ -14,11 +14,16 @@ The following instructions will allow you to set up and control the timing FMC.
 ### Software: 
 
 The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
-The pdtbutler along with the timing software backend is part of the DUNE DAQ installation. To get the installation instructions please go to the following link:
+The pdtbutler along with the timing software backend is part of the DUNE DAQ installation. In terms of which DAQ release to use, the following
+twiki page lists the most recent tags; in general the most recent tag here is the one to use. 
 
-https://github.com/DUNE-DAQ/minidaqapp/wiki/Instructions-for-setting-up-a-v2.8.0-development-environment
+https://github.com/DUNE-DAQ/daq-release/tags
 
+To install this release you can find the instructions listed here on the right hand side column for the particular release you are targetting. 
 Follow the instructions for Step 1 and Step 3.
+
+https://github.com/DUNE-DAQ/daqconf/wiki
+
 
 !!! warning
 	You will need access to CVMFS to follow the above instructions. 
