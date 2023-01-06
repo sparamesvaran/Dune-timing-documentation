@@ -8,21 +8,20 @@ The following instructions will allow you to set up and control the timing FMC.
 
 * Timing FMC hosted on an Enclustra Mars PM3  base  board  with  an  Enclustra  Mars  AX3  FPGA  module or Digilent Nexsys Video card
 * JTAG  cable
-* Linux machine (for control and firmware uploads) running CentOS 7
+* Linux machine (for control and firmware uploads) running CentOS 8 (though CentOS 7 still currently supported)
 
 
 ### Software: 
 
-The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
-The pdtbutler along with the timing software backend is part of the DUNE DAQ installation. In terms of which DAQ release to use, the following
-twiki page lists the most recent tags; in general the most recent tag here is the one to use. 
+The DUNE timing butler (dtsbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
+The dtsbutler along with the timing software backend is part of the DUNE DAQ installation. In terms of which DAQ release to use, the following
+twiki page lists the most recent tags; in general the most recent tag here is the one to use. The release will begin with the text 'dunedaq-vX.X.X'.
 
 https://github.com/DUNE-DAQ/daq-release/tags
 
-To install this release you can find the instructions listed here on the right hand side column for the particular release you are targetting. 
-Follow the instructions for Step 1 and Step 3.
+To install this release you can find the instructions listed here.
 
-https://github.com/DUNE-DAQ/daqconf/wiki
+https://dune-daq-sw.readthedocs.io/en/latest/packages/daq-buildtools/
 
 
 !!! warning
@@ -48,7 +47,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 
 
 !!! warning
-	The firwmare is currently using the Ethers file on the PC to assign IP addresses. You must edit this file to assign the MAC address of the baseboard (coming from the baseboard UID) to the IP you wish to assign it to. The IP address for the standard operation of an FMC, acting as master and/or endpoint is 192.168.200.16.
+	Unless a specific IP address has been programmed on the FMC, RARP will be used to assign an IP address, i.e. the firwmare will use the Ethers file on the PC to assign IP addresses. You must edit this file to assign the MAC address of the baseboard (coming from the baseboard UID) to the IP you wish to assign it to. The IP address for the standard operation of an FMC, acting as master and/or endpoint is 192.168.200.16.
 
 
 
@@ -57,7 +56,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
  Reset the FMC with a 62.5 MHz clock file; this will output the clock.
 
  ```
- pdtbutler io PRIMARY reset  
+ dtsbutler io PRIMARY reset  
 
  ```	
 
@@ -130,7 +129,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 Set the time of the FMC master block:
 
 ```
-pdtbutler mst PRIMARY synctime
+dtsbutler mst PRIMARY synctime
 
 ```
 ??? info 
@@ -151,38 +150,10 @@ pdtbutler mst PRIMARY synctime
 	```
 
 
-Configure timing partition 0 - this will start sending out time pulses once per second.
+Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.
 
 ```
-pdtbutler mst PRIMARY part 0 configure
-
-```
-
-??? info 
-	``` python
-		Created device PRIMARY
-	-----------Hardware info----------
-	+----------------+---------------+
-	|   Board type   |      fmc      |
-	| Board revision |    kFMCRev3   |
-	|    Board UID   | 0x49162b67ce6 |
-	|  Carrier type  | enclustra-a35 |
-	|   Design type  |   ouroboros   |
-	+----------------+---------------+
-
-	Master FW rev: 0x50100, partitions: 4, channels: 5
-
-	Configuring partition 0
-	Trigger mask set to 0xf1
-	  Fake mask 0x1
-	  Phys mask 0xf
-	Partition 0 enabled and configured
-	```
-
-Check status of timing partition 0 - - the TimeSync cnts number in the final table below shows the number of pulses sent.
-
-```
-pdtbutler mst PRIMARY part 0 status 
+dtsbutler mst PRIMARY status 
 
 ```
 
@@ -263,7 +234,7 @@ pdtbutler mst PRIMARY part 0 status
 First reset the Endpoint:
 
 ```
-pdtbutler io $EPT reset
+dtsbutler io $EPT reset
 
 ```
 
@@ -271,14 +242,14 @@ Enable the address you wish to, in this exame we enable address 0x2.
 
     
 ```
-pdtbutler ept ${EPT} 0 enable -a 2
+dtsbutler ept ${EPT} enable -a 2
 
 ```
 
 Check the status of the endpoint.
 
 ```
-pdtbutler ept ${EPT} 0 status
+pdtbutler ept ${EPT} status
 
 ```
 
