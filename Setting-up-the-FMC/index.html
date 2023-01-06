@@ -385,16 +385,15 @@
 <ul>
 <li>Timing FMC hosted on an Enclustra Mars PM3  base  board  with  an  Enclustra  Mars  AX3  FPGA  module or Digilent Nexsys Video card</li>
 <li>JTAG  cable</li>
-<li>Linux machine (for control and firmware uploads) running CentOS 7</li>
+<li>Linux machine (for control and firmware uploads) running CentOS 8 (though CentOS 7 still currently supported)</li>
 </ul>
 <h3 id="software">Software:<a class="headerlink" href="#software" title="Permanent link">&para;</a></h3>
-<p>The ProtoDUNE timing butler (pdtbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
-The pdtbutler along with the timing software backend is part of the DUNE DAQ installation. In terms of which DAQ release to use, the following
-twiki page lists the most recent tags; in general the most recent tag here is the one to use. </p>
+<p>The DUNE timing butler (dtsbutler) is a python-based command line tool which provides the functionality to control the timing FMC.
+The dtsbutler along with the timing software backend is part of the DUNE DAQ installation. In terms of which DAQ release to use, the following
+twiki page lists the most recent tags; in general the most recent tag here is the one to use. The release will begin with the text 'dunedaq-vX.X.X'.</p>
 <p>https://github.com/DUNE-DAQ/daq-release/tags</p>
-<p>To install this release you can find the instructions listed here on the right hand side column for the particular release you are targetting. 
-Follow the instructions for Step 1 and Step 3.</p>
-<p>https://github.com/DUNE-DAQ/daqconf/wiki</p>
+<p>To install this release you can find the instructions listed here.</p>
+<p>https://dune-daq-sw.readthedocs.io/en/latest/packages/daq-buildtools/</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>You will need access to CVMFS to follow the above instructions. </p>
@@ -409,11 +408,11 @@ Follow the instructions for Step 1 and Step 3.</p>
 Using Vivado or an alternative method, connect to the JTAG chain and program the FPGA with this firmware bit file. </p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>The firwmare is currently using the Ethers file on the PC to assign IP addresses. You must edit this file to assign the MAC address of the baseboard (coming from the baseboard UID) to the IP you wish to assign it to. The IP address for the standard operation of an FMC, acting as master and/or endpoint is 192.168.200.16.</p>
+<p>Unless a specific IP address has been programmed on the FMC, RARP will be used to assign an IP address, i.e. the firwmare will use the Ethers file on the PC to assign IP addresses. You must edit this file to assign the MAC address of the baseboard (coming from the baseboard UID) to the IP you wish to assign it to. The IP address for the standard operation of an FMC, acting as master and/or endpoint is 192.168.200.16.</p>
 </div>
 <h2 id="configuring-the-fmc-for-operation-at-625mhz">Configuring the FMC for operation at 62.5MHz<a class="headerlink" href="#configuring-the-fmc-for-operation-at-625mhz" title="Permanent link">&para;</a></h2>
 <p>Reset the FMC with a 62.5 MHz clock file; this will output the clock.</p>
-<div class="highlight"><pre><span></span><code>pdtbutler io PRIMARY reset  
+<div class="highlight"><pre><span></span><code>dtsbutler io PRIMARY reset  
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
 <span class="n">Design</span> <span class="s1">&#39;ouroboros&#39;</span> <span class="n">on</span> <span class="n">board</span> <span class="s1">&#39;fmc&#39;</span> <span class="n">on</span> <span class="n">carrier</span> <span class="s1">&#39;enclustra-a35&#39;</span>
@@ -480,7 +479,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </code></pre></div>
 </details>
 <p>Set the time of the FMC master block:</p>
-<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY synctime
+<div class="highlight"><pre><span></span><code>dtsbutler mst PRIMARY synctime
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code>    <span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
 <span class="o">-----------</span><span class="n">Hardware</span> <span class="n">info</span><span class="o">----------</span>
@@ -497,30 +496,8 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 <span class="mi">2021</span><span class="o">-</span><span class="mi">03</span><span class="o">-</span><span class="mi">09</span> <span class="mi">16</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mf">30.929</span> <span class="n">pdt</span> <span class="n">NOTICE</span>   <span class="o">|</span> <span class="n">New</span> <span class="n">timestamp</span><span class="p">:</span> <span class="mh">0x11eefb0ec7ae321</span><span class="p">,</span> <span class="n">Tue</span><span class="p">,</span> <span class="mi">09</span> <span class="n">Mar</span> <span class="mi">2021</span> <span class="mi">16</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">30</span> <span class="o">+</span><span class="mi">0000</span>
 </code></pre></div>
 </details>
-<p>Configure timing partition 0 - this will start sending out time pulses once per second.</p>
-<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 configure
-</code></pre></div>
-<details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code>    <span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
-<span class="o">-----------</span><span class="n">Hardware</span> <span class="n">info</span><span class="o">----------</span>
-<span class="o">+----------------+---------------+</span>
-<span class="o">|</span>   <span class="n">Board</span> <span class="nb">type</span>   <span class="o">|</span>      <span class="n">fmc</span>      <span class="o">|</span>
-<span class="o">|</span> <span class="n">Board</span> <span class="n">revision</span> <span class="o">|</span>    <span class="n">kFMCRev3</span>   <span class="o">|</span>
-<span class="o">|</span>    <span class="n">Board</span> <span class="n">UID</span>   <span class="o">|</span> <span class="mh">0x49162b67ce6</span> <span class="o">|</span>
-<span class="o">|</span>  <span class="n">Carrier</span> <span class="nb">type</span>  <span class="o">|</span> <span class="n">enclustra</span><span class="o">-</span><span class="n">a35</span> <span class="o">|</span>
-<span class="o">|</span>   <span class="n">Design</span> <span class="nb">type</span>  <span class="o">|</span>   <span class="n">ouroboros</span>   <span class="o">|</span>
-<span class="o">+----------------+---------------+</span>
-
-<span class="n">Master</span> <span class="n">FW</span> <span class="n">rev</span><span class="p">:</span> <span class="mh">0x50100</span><span class="p">,</span> <span class="n">partitions</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="n">channels</span><span class="p">:</span> <span class="mi">5</span>
-
-<span class="n">Configuring</span> <span class="n">partition</span> <span class="mi">0</span>
-<span class="n">Trigger</span> <span class="n">mask</span> <span class="nb">set</span> <span class="n">to</span> <span class="mh">0xf1</span>
-  <span class="n">Fake</span> <span class="n">mask</span> <span class="mh">0x1</span>
-  <span class="n">Phys</span> <span class="n">mask</span> <span class="mh">0xf</span>
-<span class="n">Partition</span> <span class="mi">0</span> <span class="n">enabled</span> <span class="ow">and</span> <span class="n">configured</span>
-</code></pre></div>
-</details>
-<p>Check status of timing partition 0 - - the TimeSync cnts number in the final table below shows the number of pulses sent.</p>
-<div class="highlight"><pre><span></span><code>pdtbutler mst PRIMARY part 0 status 
+<p>Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.</p>
+<div class="highlight"><pre><span></span><code>dtsbutler mst PRIMARY status 
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="o">--------------</span><span class="n">Cmd</span> <span class="n">gen</span> <span class="n">counters</span><span class="o">--------------</span>
 <span class="o">+------+-----------------+-----------------+</span>
@@ -594,13 +571,13 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </details>
 <h2 id="configuring-the-endpoint">Configuring the endpoint<a class="headerlink" href="#configuring-the-endpoint" title="Permanent link">&para;</a></h2>
 <p>First reset the Endpoint:</p>
-<div class="highlight"><pre><span></span><code>pdtbutler io $EPT reset
+<div class="highlight"><pre><span></span><code>dtsbutler io $EPT reset
 </code></pre></div>
 <p>Enable the address you wish to, in this exame we enable address 0x2.</p>
-<div class="highlight"><pre><span></span><code>pdtbutler ept ${EPT} 0 enable -a 2
+<div class="highlight"><pre><span></span><code>dtsbutler ept ${EPT} enable -a 2
 </code></pre></div>
 <p>Check the status of the endpoint.</p>
-<div class="highlight"><pre><span></span><code>pdtbutler ept ${EPT} 0 status
+<div class="highlight"><pre><span></span><code>pdtbutler ept ${EPT} status
 </code></pre></div>
                 
               
