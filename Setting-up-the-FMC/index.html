@@ -327,6 +327,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#setup-the-connections-file" class="md-nav__link">
+    Setup the connections file
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#configuring-the-fmc-for-operation-at-625mhz" class="md-nav__link">
     Configuring the FMC for operation at 62.5MHz
   </a>
@@ -392,15 +399,19 @@
 The dtsbutler along with the timing software backend is part of the DUNE DAQ installation. In terms of which DAQ release to use, the following
 twiki page lists the most recent tags; in general the most recent tag here is the one to use. The release will begin with the text 'dunedaq-vX.X.X'.</p>
 <p>https://github.com/DUNE-DAQ/daq-release/tags</p>
-<p>To install this release you can find the instructions listed here.</p>
+<p>To install this release you can find the instructions listed here. </p>
 <p>https://dune-daq-sw.readthedocs.io/en/latest/packages/daq-buildtools/</p>
+<p>For the curent latest release, you will have to run these commands:</p>
+<div class="highlight"><pre><span></span><code>source /cvmfs/dunedaq.opensciencegrid.org/setup_dunedaq.sh
+dbt-setup-release dunedaq-v3.2.1
+</code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>You will need access to CVMFS to follow the above instructions. </p>
 </div>
 <h3 id="firmware">Firmware<a class="headerlink" href="#firmware" title="Permanent link">&para;</a></h3>
-<p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit - remember to download the file which corresponds to the baseboard you have. The file below corresponds to the Enclustra baseboard, which is the default and therefore is not specified in the title of the file. The file for the Nexsys baseboard is listed next. If the clock frequency is not specified in the file as 50 MHz, then the file will be 62.5MHz. The below is an example only - please contact the Timing development team via the #timing-integration Slack channel on the DUNE workspace to check which version of the firmware to use. </p>
-<div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/ci/tags/v6.2.0/pipeline3416367/ouroboros_pc053d_fmc_v6-2-0_sha-91dc3cf5_runner-slu9p8x4-project-19909-concurrent-5_220106_1706.tgz
+<p>Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit - remember to download the file which corresponds to the baseboard you have. The file below corresponds to the Enclustra baseboard, which is the default and therefore is not specified in the title of the file. The file for the Nexsys baseboard is listed next. If the clock frequency is not specified in the file as 50 MHz, then the file will be 62.5MHz. The below is an example only - please contact the Timing development team via the #timing-integration Slack channel on the DUNE workspace to check which version of the firmware to use. If you wish to use the endpoint as the Master to issue commands, the master firmware bitfile is the one to use. </p>
+<div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/ci/tags/v7.0.0/pipeline4610440/package/master_pc053d_v7-0-0_sha-3c684fa7_runner-slu9p8x4-project-19909-concurrent-0_221012_1128.tgz
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>wget https://pdts-fw.web.cern.ch/pdts-fw/ci/tags/v6.2.0/pipeline3416367/ouroboros_pc053d_nexys_video_v6-2-0_sha-91dc3cf5_runner-slu9p8x4-project-19909-concurrent-13_220106_1707.tgz
 </code></pre></div>
@@ -410,9 +421,19 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 <p class="admonition-title">Warning</p>
 <p>Unless a specific IP address has been programmed on the FMC, RARP will be used to assign an IP address, i.e. the firwmare will use the Ethers file on the PC to assign IP addresses. You must edit this file to assign the MAC address of the baseboard (coming from the baseboard UID) to the IP you wish to assign it to. The IP address for the standard operation of an FMC, acting as master and/or endpoint is 192.168.200.16.</p>
 </div>
+<h2 id="setup-the-connections-file">Setup the connections file<a class="headerlink" href="#setup-the-connections-file" title="Permanent link">&para;</a></h2>
+<p>A local connections file is the simplest method to ensure you connect to the correct board. A template of this file is listed here, called connections.xml</p>
+<p>```
+ <?xml version="1.0" encoding="UTF-8"?>
+</p>
+<p><connections>
+  <connection id="PRIMARY"             uri="ipbusudp-2.0://192.168.200.16:50001" address_table="file://${TIMING_SHARE}/config/etc/addrtab/v7xx/master_fmc/top.xml" />
+</connections></p>
+<p>```</p>
+<p>You can use the above template, but you will need to edit the file to point to the IP address assigned to the board.</p>
 <h2 id="configuring-the-fmc-for-operation-at-625mhz">Configuring the FMC for operation at 62.5MHz<a class="headerlink" href="#configuring-the-fmc-for-operation-at-625mhz" title="Permanent link">&para;</a></h2>
 <p>Reset the FMC with a 62.5 MHz clock file; this will output the clock.</p>
-<div class="highlight"><pre><span></span><code>dtsbutler io PRIMARY reset  
+<div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml io PRIMARY reset  
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
 <span class="n">Design</span> <span class="s1">&#39;ouroboros&#39;</span> <span class="n">on</span> <span class="n">board</span> <span class="s1">&#39;fmc&#39;</span> <span class="n">on</span> <span class="n">carrier</span> <span class="s1">&#39;enclustra-a35&#39;</span>
@@ -479,7 +500,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </code></pre></div>
 </details>
 <p>Set the time of the FMC master block:</p>
-<div class="highlight"><pre><span></span><code>dtsbutler mst PRIMARY synctime
+<div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml mst PRIMARY synctime
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code>    <span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
 <span class="o">-----------</span><span class="n">Hardware</span> <span class="n">info</span><span class="o">----------</span>
@@ -497,7 +518,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </code></pre></div>
 </details>
 <p>Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.</p>
-<div class="highlight"><pre><span></span><code>dtsbutler mst PRIMARY status 
+<div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml mst PRIMARY status 
 </code></pre></div>
 <details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="o">--------------</span><span class="n">Cmd</span> <span class="n">gen</span> <span class="n">counters</span><span class="o">--------------</span>
 <span class="o">+------+-----------------+-----------------+</span>
@@ -571,7 +592,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </details>
 <h2 id="configuring-the-endpoint">Configuring the endpoint<a class="headerlink" href="#configuring-the-endpoint" title="Permanent link">&para;</a></h2>
 <p>First reset the Endpoint:</p>
-<div class="highlight"><pre><span></span><code>dtsbutler io $EPT reset
+<div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml io $EPT reset
 </code></pre></div>
 <p>Enable the address you wish to, in this exame we enable address 0x2.</p>
 <div class="highlight"><pre><span></span><code>dtsbutler ept ${EPT} enable -a 2
