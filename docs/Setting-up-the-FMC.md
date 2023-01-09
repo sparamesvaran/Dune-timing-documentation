@@ -19,9 +19,18 @@ twiki page lists the most recent tags; in general the most recent tag here is th
 
 https://github.com/DUNE-DAQ/daq-release/tags
 
-To install this release you can find the instructions listed here.
+To install this release you can find the instructions listed here. 
 
 https://dune-daq-sw.readthedocs.io/en/latest/packages/daq-buildtools/
+
+For the curent latest release, you will have to run these commands:
+
+
+ ```
+ source /cvmfs/dunedaq.opensciencegrid.org/setup_dunedaq.sh
+ dbt-setup-release dunedaq-v3.2.1
+
+ ```	
 
 
 !!! warning
@@ -29,10 +38,10 @@ https://dune-daq-sw.readthedocs.io/en/latest/packages/daq-buildtools/
 
 ### Firmware 
 
-Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit - remember to download the file which corresponds to the baseboard you have. The file below corresponds to the Enclustra baseboard, which is the default and therefore is not specified in the title of the file. The file for the Nexsys baseboard is listed next. If the clock frequency is not specified in the file as 50 MHz, then the file will be 62.5MHz. The below is an example only - please contact the Timing development team via the #timing-integration Slack channel on the DUNE workspace to check which version of the firmware to use. 
+Download the firmware bit file for the FMC which will allow the FMC to behave as a master timing unit - remember to download the file which corresponds to the baseboard you have. The file below corresponds to the Enclustra baseboard, which is the default and therefore is not specified in the title of the file. The file for the Nexsys baseboard is listed next. If the clock frequency is not specified in the file as 50 MHz, then the file will be 62.5MHz. The below is an example only - please contact the Timing development team via the #timing-integration Slack channel on the DUNE workspace to check which version of the firmware to use. If you wish to use the endpoint as the Master to issue commands, the master firmware bitfile is the one to use. 
 
  ```
- wget https://pdts-fw.web.cern.ch/pdts-fw/ci/tags/v6.2.0/pipeline3416367/ouroboros_pc053d_fmc_v6-2-0_sha-91dc3cf5_runner-slu9p8x4-project-19909-concurrent-5_220106_1706.tgz
+ wget https://pdts-fw.web.cern.ch/pdts-fw/ci/tags/v7.0.0/pipeline4610440/package/master_pc053d_v7-0-0_sha-3c684fa7_runner-slu9p8x4-project-19909-concurrent-0_221012_1128.tgz
  
  ```
 
@@ -49,6 +58,21 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 !!! warning
 	Unless a specific IP address has been programmed on the FMC, RARP will be used to assign an IP address, i.e. the firwmare will use the Ethers file on the PC to assign IP addresses. You must edit this file to assign the MAC address of the baseboard (coming from the baseboard UID) to the IP you wish to assign it to. The IP address for the standard operation of an FMC, acting as master and/or endpoint is 192.168.200.16.
 
+##Setup the connections file
+
+A local connections file is the simplest method to ensure you connect to the correct board. A template of this file is listed here, called connections.xml
+
+ ```
+ <?xml version="1.0" encoding="UTF-8"?>
+
+<connections>
+  <connection id="PRIMARY"             uri="ipbusudp-2.0://192.168.200.16:50001" address_table="file://${TIMING_SHARE}/config/etc/addrtab/v7xx/master_fmc/top.xml" />
+</connections>
+
+ 
+ ```
+
+You can use the above template, but you will need to edit the file to point to the IP address assigned to the board.
 
 
 ##Configuring the FMC for operation at 62.5MHz
@@ -56,7 +80,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
  Reset the FMC with a 62.5 MHz clock file; this will output the clock.
 
  ```
- dtsbutler io PRIMARY reset  
+ dtsbutler -c connections.xml io PRIMARY reset  
 
  ```	
 
@@ -129,7 +153,7 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 Set the time of the FMC master block:
 
 ```
-dtsbutler mst PRIMARY synctime
+dtsbutler -c connections.xml mst PRIMARY synctime
 
 ```
 ??? info 
@@ -153,7 +177,7 @@ dtsbutler mst PRIMARY synctime
 Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.
 
 ```
-dtsbutler mst PRIMARY status 
+dtsbutler -c connections.xml mst PRIMARY status 
 
 ```
 
@@ -234,7 +258,7 @@ dtsbutler mst PRIMARY status
 First reset the Endpoint:
 
 ```
-dtsbutler io $EPT reset
+dtsbutler -c connections.xml io $EPT reset
 
 ```
 
