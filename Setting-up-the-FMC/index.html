@@ -401,7 +401,7 @@ twiki page lists the most recent tags; in general the most recent tag here is th
 <p>https://github.com/DUNE-DAQ/daq-release/tags</p>
 <p>To install this release you can find the instructions listed here. </p>
 <p>https://dune-daq-sw.readthedocs.io/en/latest/packages/daq-buildtools/</p>
-<p>For the curent latest release, you will have to run these commands:</p>
+<p>For the current latest release, you will have to run these commands:</p>
 <div class="highlight"><pre><span></span><code>source /cvmfs/dunedaq.opensciencegrid.org/setup_dunedaq.sh
 dbt-setup-release dunedaq-v3.2.1
 </code></pre></div>
@@ -423,12 +423,13 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </div>
 <h2 id="setup-the-connections-file">Setup the connections file<a class="headerlink" href="#setup-the-connections-file" title="Permanent link">&para;</a></h2>
 <p>A local connections file is the simplest method to ensure you connect to the correct board. A template of this file is listed here, called connections.xml</p>
-<p>```
- <?xml version="1.0" encoding="UTF-8"?>
-</p>
-<p><connections>
-  <connection id="PRIMARY"             uri="ipbusudp-2.0://192.168.200.16:50001" address_table="file://${TIMING_SHARE}/config/etc/addrtab/v7xx/master_fmc/top.xml" />
-</connections></p>
+<p>```</p>
+<div class="highlight"><pre><span></span><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+
+&lt;connections&gt;
+&lt;connection id=&quot;PRIMARY&quot;             uri=&quot;ipbusudp-2.0://192.168.200.16:50001&quot; address_table=&quot;file://${TIMING_SHARE}/config/etc/addrtab/v7xx/master_fmc/top.xml&quot; /&gt;
+&lt;/connections&gt;
+</code></pre></div>
 <p>```</p>
 <p>You can use the above template, but you will need to edit the file to point to the IP address assigned to the board.</p>
 <h2 id="configuring-the-fmc-for-operation-at-625mhz">Configuring the FMC for operation at 62.5MHz<a class="headerlink" href="#configuring-the-fmc-for-operation-at-625mhz" title="Permanent link">&para;</a></h2>
