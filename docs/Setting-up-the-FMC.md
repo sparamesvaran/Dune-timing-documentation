@@ -23,7 +23,7 @@ To install this release you can find the instructions listed here.
 
 https://dune-daq-sw.readthedocs.io/en/latest/packages/daq-buildtools/
 
-For the curent latest release, you will have to run these commands:
+For the current latest release, you will have to run these commands:
 
 
  ```
@@ -62,12 +62,13 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 
 A local connections file is the simplest method to ensure you connect to the correct board. A template of this file is listed here, called connections.xml
 
- ```
- <?xml version="1.0" encoding="UTF-8"?>
+  ```
 
-<connections>
-  <connection id="PRIMARY"             uri="ipbusudp-2.0://192.168.200.16:50001" address_table="file://${TIMING_SHARE}/config/etc/addrtab/v7xx/master_fmc/top.xml" />
-</connections>
+	<?xml version="1.0" encoding="UTF-8"?>
+
+	<connections>
+  	<connection id="PRIMARY"             uri="ipbusudp-2.0://192.168.200.16:50001" address_table="file://${TIMING_SHARE}/config/etc/addrtab/v7xx/master_fmc/top.xml" />
+	</connections>
 
  
  ```
