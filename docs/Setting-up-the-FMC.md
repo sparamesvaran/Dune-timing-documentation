@@ -2,6 +2,11 @@ To enable testing and commissioning of the timing system, a timing FPGA mezzanin
 
 The following instructions will allow you to set up and control the timing FMC. 
 
+## What you should ask the Timing development team for:
+
+*The firmware version you should use for your particular application
+*The location of the associated address table
+
 ## Pre-requisites:
 
 ### Hardware: 
