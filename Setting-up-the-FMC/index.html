@@ -432,66 +432,71 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 <p>Reset the FMC with a 62.5 MHz clock file; this will output the clock. The PRIMARY in the command below has to be specified in your connections file, these DEVICE IDs have to match. </p>
 <div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml io PRIMARY reset  
 </code></pre></div>
-<details class="info"><summary>Info</summary><p>``` python
-Created device PRIMARY
-Design 'master' on board 'pc069' on carrier 'nexus-video' with frequency 62.5 MHz
-Resetting PRIMARY
-2023-Jun-07 14:49:11,171 LOG [dunedaq::timing::FMCIONode::reset(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/FMCIONode.cpp:85] PLL configuration file : /home/wx21978/projects/timing/temp/pc069_clock_file.txt
-2023-Jun-07 14:49:13,570 LOG [dunedaq::timing::FMCIONode::reset(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/FMCIONode.cpp:118] Reset done
-----------------Hardware info----------------
-+--------------------------+----------------+
-|        Board type        |      pc069     |
-|      Board revision      |     pc069a     |
-|         Board UID        | 0x803428749c04 |
-|       Carrier type       |   nexus-video  |
-|        Design type       |     master     |
-| Firmware frequency [MHz] |    62.500000   |
-+--------------------------+----------------+</p>
-<p>------FMC IO state-----
-+-------------+-------+
-|   Register  | Value |
-+-------------+-------+
-|   cdr_lol   |  0x0  |
-|   cdr_los   |  0x0  |
-|   mmcm_ok   |  0x1  |
-| mmcm_sticky |  0x0  |
-|   sfp_flt   |  0x0  |
-|   sfp_los   |  0x1  |
-+-------------+-------+</p>
-<p>PLL Clock frequency measurement:
-PLL freq: 250.002006528
-CDR freq: 0
-SMPL freq: 0</p>
-<p>PLL configuration id   : 069a_mst
--------PLL information------
-+-----------------+--------+
-|     Register    |  Value |
-+-----------------+--------+
-|   Device grade  |   0x0  |
-| Device revision |   0x0  |
-|   Part number   | 0x5395 |
-+-----------------+--------+</p>
-<p>----------PLL state----------
-+-------------------+-------+
-|      Register     | Value |
-+-------------------+-------+
-|      CAL_PLL      |  0x0  |
-|        HOLD       |  0x1  |
-|        LOL        |  0x1  |
-|        LOS        |  0x0  |
-|      LOSXAXB      |  0x0  |
-|    LOSXAXB_FLG    |  0x1  |
-|        OOF        |  0x0  |
-|    OOF (sticky)   |  0xf  |
-|   SMBUS_TIMEOUT   |  0x0  |
-| SMBUS_TIMEOUT_FLG |  0x0  |
-|      SYSINCAL     |  0x0  |
-|    SYSINCAL_FLG   |  0x1  |
-|      XAXB_ERR     |  0x0  |
-|    XAXB_ERR_FLG   |  0x1  |
-+-------------------+-------+</p>
+<details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
+<span class="n">Design</span> <span class="s1">&#39;master&#39;</span> <span class="n">on</span> <span class="n">board</span> <span class="s1">&#39;pc069&#39;</span> <span class="n">on</span> <span class="n">carrier</span> <span class="s1">&#39;nexus-video&#39;</span> <span class="k">with</span> <span class="n">frequency</span> <span class="mf">62.5</span> <span class="n">MHz</span>
+<span class="n">Resetting</span> <span class="n">PRIMARY</span>
+<span class="mi">2023</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">07</span> <span class="mi">14</span><span class="p">:</span><span class="mi">49</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="mi">171</span> <span class="n">LOG</span> <span class="p">[</span><span class="n">dunedaq</span><span class="p">::</span><span class="n">timing</span><span class="p">::</span><span class="n">FMCIONode</span><span class="p">::</span><span class="n">reset</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">wx21978</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">daq_4</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="n">sourcecode</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">FMCIONode</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">85</span><span class="p">]</span> <span class="n">PLL</span> <span class="n">configuration</span> <span class="n">file</span> <span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wx21978</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">temp</span><span class="o">/</span><span class="n">pc069_clock_file</span><span class="o">.</span><span class="n">txt</span>
+<span class="mi">2023</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">07</span> <span class="mi">14</span><span class="p">:</span><span class="mi">49</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span><span class="mi">570</span> <span class="n">LOG</span> <span class="p">[</span><span class="n">dunedaq</span><span class="p">::</span><span class="n">timing</span><span class="p">::</span><span class="n">FMCIONode</span><span class="p">::</span><span class="n">reset</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">wx21978</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">daq_4</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="n">sourcecode</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">FMCIONode</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">118</span><span class="p">]</span> <span class="n">Reset</span> <span class="n">done</span>
+<span class="o">----------------</span><span class="n">Hardware</span> <span class="n">info</span><span class="o">----------------</span>
+<span class="o">+--------------------------+----------------+</span>
+<span class="o">|</span>        <span class="n">Board</span> <span class="nb">type</span>        <span class="o">|</span>      <span class="n">pc069</span>     <span class="o">|</span>
+<span class="o">|</span>      <span class="n">Board</span> <span class="n">revision</span>      <span class="o">|</span>     <span class="n">pc069a</span>     <span class="o">|</span>
+<span class="o">|</span>         <span class="n">Board</span> <span class="n">UID</span>        <span class="o">|</span> <span class="mh">0x803428749c04</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="n">Carrier</span> <span class="nb">type</span>       <span class="o">|</span>   <span class="n">nexus</span><span class="o">-</span><span class="n">video</span>  <span class="o">|</span>
+<span class="o">|</span>        <span class="n">Design</span> <span class="nb">type</span>       <span class="o">|</span>     <span class="n">master</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="n">Firmware</span> <span class="n">frequency</span> <span class="p">[</span><span class="n">MHz</span><span class="p">]</span> <span class="o">|</span>    <span class="mf">62.500000</span>   <span class="o">|</span>
+<span class="o">+--------------------------+----------------+</span>
+
+<span class="o">------</span><span class="n">FMC</span> <span class="n">IO</span> <span class="n">state</span><span class="o">-----</span>
+<span class="o">+-------------+-------+</span>
+<span class="o">|</span>   <span class="n">Register</span>  <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+-------------+-------+</span>
+<span class="o">|</span>   <span class="n">cdr_lol</span>   <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">cdr_los</span>   <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">mmcm_ok</span>   <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span> <span class="n">mmcm_sticky</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">sfp_flt</span>   <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">sfp_los</span>   <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">+-------------+-------+</span>
+
+
+<span class="n">PLL</span> <span class="n">Clock</span> <span class="n">frequency</span> <span class="n">measurement</span><span class="p">:</span>
+<span class="n">PLL</span> <span class="n">freq</span><span class="p">:</span> <span class="mf">250.002006528</span>
+<span class="n">CDR</span> <span class="n">freq</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">SMPL</span> <span class="n">freq</span><span class="p">:</span> <span class="mi">0</span>
+
+
+<span class="n">PLL</span> <span class="n">configuration</span> <span class="nb">id</span>   <span class="p">:</span> <span class="mi">069</span><span class="n">a_mst</span>
+<span class="o">-------</span><span class="n">PLL</span> <span class="n">information</span><span class="o">------</span>
+<span class="o">+-----------------+--------+</span>
+<span class="o">|</span>     <span class="n">Register</span>    <span class="o">|</span>  <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+-----------------+--------+</span>
+<span class="o">|</span>   <span class="n">Device</span> <span class="n">grade</span>  <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span> <span class="n">Device</span> <span class="n">revision</span> <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">Part</span> <span class="n">number</span>   <span class="o">|</span> <span class="mh">0x5395</span> <span class="o">|</span>
+<span class="o">+-----------------+--------+</span>
+
+<span class="o">----------</span><span class="n">PLL</span> <span class="n">state</span><span class="o">----------</span>
+<span class="o">+-------------------+-------+</span>
+<span class="o">|</span>      <span class="n">Register</span>     <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+-------------------+-------+</span>
+<span class="o">|</span>      <span class="n">CAL_PLL</span>      <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>        <span class="n">HOLD</span>       <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>        <span class="n">LOL</span>        <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>        <span class="n">LOS</span>        <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>      <span class="n">LOSXAXB</span>      <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>    <span class="n">LOSXAXB_FLG</span>    <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>        <span class="n">OOF</span>        <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>    <span class="n">OOF</span> <span class="p">(</span><span class="n">sticky</span><span class="p">)</span>   <span class="o">|</span>  <span class="mh">0xf</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">SMBUS_TIMEOUT</span>   <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span> <span class="n">SMBUS_TIMEOUT_FLG</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>      <span class="n">SYSINCAL</span>     <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>    <span class="n">SYSINCAL_FLG</span>   <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>      <span class="n">XAXB_ERR</span>     <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>    <span class="n">XAXB_ERR_FLG</span>   <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">+-------------------+-------+</span>
+</code></pre></div>
 </details>
-<p>```</p>
 <p>Set the time of the FMC master block:</p>
 <div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml mst PRIMARY synctime
 </code></pre></div>
