@@ -177,15 +177,14 @@ dtsbutler -c connections.xml mst PRIMARY synctime
 
 Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.
 
-	```
-
+```
 dtsbutler -c connections.xml mst PRIMARY status 
 
-	```
+```
 
-	??? info 
-		``` python
-		Design 'master' on board 'pc069' on carrier 'nexus-video' with frequency 62.5 MHz
+??? info 
+	``` python
+	Design 'master' on board 'pc069' on carrier 'nexus-video' with frequency 62.5 MHz
 	----------------Hardware info----------------
 	+--------------------------+----------------+
 	|        Board type        |      pc069     |
