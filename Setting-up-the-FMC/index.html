@@ -432,9 +432,8 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 <p>Reset the FMC with a 62.5 MHz clock file; this will output the clock. The PRIMARY in the command below has to be specified in your connections file, these DEVICE IDs have to match. </p>
 <div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml io PRIMARY reset  
 </code></pre></div>
-<details class="info"><summary>Info</summary><p>``` python</p>
-</details>
-<p>Created device PRIMARY
+<details class="info"><summary>Info</summary><p>``` python
+Created device PRIMARY
 Design 'master' on board 'pc069' on carrier 'nexus-video' with frequency 62.5 MHz
 Resetting PRIMARY
 2023-Jun-07 14:49:11,171 LOG [dunedaq::timing::FMCIONode::reset(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/FMCIONode.cpp:85] PLL configuration file : /home/wx21978/projects/timing/temp/pc069_clock_file.txt
@@ -491,28 +490,28 @@ SMPL freq: 0</p>
 |      XAXB_ERR     |  0x0  |
 |    XAXB_ERR_FLG   |  0x1  |
 +-------------------+-------+</p>
-<p><div class="highlight"><pre><span></span><code>Set the time of the FMC master block:
+</details>
+<p>```</p>
+<p>Set the time of the FMC master block:</p>
+<div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml mst PRIMARY synctime
 </code></pre></div>
-dtsbutler -c connections.xml mst PRIMARY synctime</p>
-<div class="highlight"><pre><span></span><code>??? info 
-    ``` python
-        Created device PRIMARY
-Design &#39;master&#39; on board &#39;pc069&#39; on carrier &#39;nexus-video&#39; with frequency 62.5 MHz
-----------------Hardware info----------------
-+--------------------------+----------------+
-|        Board type        |      pc069     |
-|      Board revision      |     pc069a     |
-|         Board UID        | 0x803428749c04 |
-|       Carrier type       |   nexus-video  |
-|        Design type       |     master     |
-| Firmware frequency [MHz] |    62.500000   |
-+--------------------------+----------------+
+<details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code>    <span class="n">Created</span> <span class="n">device</span> <span class="n">PRIMARY</span>
+<span class="n">Design</span> <span class="s1">&#39;master&#39;</span> <span class="n">on</span> <span class="n">board</span> <span class="s1">&#39;pc069&#39;</span> <span class="n">on</span> <span class="n">carrier</span> <span class="s1">&#39;nexus-video&#39;</span> <span class="k">with</span> <span class="n">frequency</span> <span class="mf">62.5</span> <span class="n">MHz</span>
+<span class="o">----------------</span><span class="n">Hardware</span> <span class="n">info</span><span class="o">----------------</span>
+<span class="o">+--------------------------+----------------+</span>
+<span class="o">|</span>        <span class="n">Board</span> <span class="nb">type</span>        <span class="o">|</span>      <span class="n">pc069</span>     <span class="o">|</span>
+<span class="o">|</span>      <span class="n">Board</span> <span class="n">revision</span>      <span class="o">|</span>     <span class="n">pc069a</span>     <span class="o">|</span>
+<span class="o">|</span>         <span class="n">Board</span> <span class="n">UID</span>        <span class="o">|</span> <span class="mh">0x803428749c04</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="n">Carrier</span> <span class="nb">type</span>       <span class="o">|</span>   <span class="n">nexus</span><span class="o">-</span><span class="n">video</span>  <span class="o">|</span>
+<span class="o">|</span>        <span class="n">Design</span> <span class="nb">type</span>       <span class="o">|</span>     <span class="n">master</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="n">Firmware</span> <span class="n">frequency</span> <span class="p">[</span><span class="n">MHz</span><span class="p">]</span> <span class="o">|</span>    <span class="mf">62.500000</span>   <span class="o">|</span>
+<span class="o">+--------------------------+----------------+</span>
 
-Master FW rev: v7.0.0, channels: 5
-2023-Jun-08 11:34:18,205 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:295] Reading old timestamp: 0x9c4b92cd, Thu, 01 Jan 1970 01:00:41 +0000
-2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:298] Setting new timestamp: 0x1766a8929416240, Thu, 08 Jun 2023 11:34:18 +0000
-2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:303] Reading new timestamp: 0x1766a8929416e22, Thu, 08 Jun 2023 11:34:18 +0000
-2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:306] Timestamp broadcast enabled
+<span class="n">Master</span> <span class="n">FW</span> <span class="n">rev</span><span class="p">:</span> <span class="n">v7</span><span class="o">.</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">channels</span><span class="p">:</span> <span class="mi">5</span>
+<span class="mi">2023</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">08</span> <span class="mi">11</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="mi">205</span> <span class="n">LOG</span> <span class="p">[</span><span class="n">dunedaq</span><span class="p">::</span><span class="n">timing</span><span class="p">::</span><span class="n">MasterNode</span><span class="p">::</span><span class="n">sync_timestamp</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">wx21978</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">daq_4</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="n">sourcecode</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">MasterNode</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">295</span><span class="p">]</span> <span class="n">Reading</span> <span class="n">old</span> <span class="n">timestamp</span><span class="p">:</span> <span class="mh">0x9c4b92cd</span><span class="p">,</span> <span class="n">Thu</span><span class="p">,</span> <span class="mi">01</span> <span class="n">Jan</span> <span class="mi">1970</span> <span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">41</span> <span class="o">+</span><span class="mi">0000</span>
+<span class="mi">2023</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">08</span> <span class="mi">11</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="mi">207</span> <span class="n">LOG</span> <span class="p">[</span><span class="n">dunedaq</span><span class="p">::</span><span class="n">timing</span><span class="p">::</span><span class="n">MasterNode</span><span class="p">::</span><span class="n">sync_timestamp</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">wx21978</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">daq_4</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="n">sourcecode</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">MasterNode</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">298</span><span class="p">]</span> <span class="n">Setting</span> <span class="n">new</span> <span class="n">timestamp</span><span class="p">:</span> <span class="mh">0x1766a8929416240</span><span class="p">,</span> <span class="n">Thu</span><span class="p">,</span> <span class="mi">08</span> <span class="n">Jun</span> <span class="mi">2023</span> <span class="mi">11</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">18</span> <span class="o">+</span><span class="mi">0000</span>
+<span class="mi">2023</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">08</span> <span class="mi">11</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="mi">207</span> <span class="n">LOG</span> <span class="p">[</span><span class="n">dunedaq</span><span class="p">::</span><span class="n">timing</span><span class="p">::</span><span class="n">MasterNode</span><span class="p">::</span><span class="n">sync_timestamp</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">wx21978</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">daq_4</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="n">sourcecode</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">MasterNode</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">303</span><span class="p">]</span> <span class="n">Reading</span> <span class="n">new</span> <span class="n">timestamp</span><span class="p">:</span> <span class="mh">0x1766a8929416e22</span><span class="p">,</span> <span class="n">Thu</span><span class="p">,</span> <span class="mi">08</span> <span class="n">Jun</span> <span class="mi">2023</span> <span class="mi">11</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">18</span> <span class="o">+</span><span class="mi">0000</span>
+<span class="mi">2023</span><span class="o">-</span><span class="n">Jun</span><span class="o">-</span><span class="mi">08</span> <span class="mi">11</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="mi">207</span> <span class="n">LOG</span> <span class="p">[</span><span class="n">dunedaq</span><span class="p">::</span><span class="n">timing</span><span class="p">::</span><span class="n">MasterNode</span><span class="p">::</span><span class="n">sync_timestamp</span><span class="p">(</span><span class="o">...</span><span class="p">)</span> <span class="n">at</span> <span class="o">/</span><span class="n">users</span><span class="o">/</span><span class="n">wx21978</span><span class="o">/</span><span class="n">projects</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">daq_4</span><span class="o">.</span><span class="mf">0.0</span><span class="o">/</span><span class="n">sourcecode</span><span class="o">/</span><span class="n">timing</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">MasterNode</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">306</span><span class="p">]</span> <span class="n">Timestamp</span> <span class="n">broadcast</span> <span class="n">enabled</span>
 </code></pre></div>
 <p>Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.</p>
 <div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml mst PRIMARY status 
@@ -577,7 +576,8 @@ Timestamp: 0x1766a893ba5014a -&gt; Thu, 08 Jun 2023 11:34:22 +0000</p>
 |   ready  |  0x1  |
 |  timeout |  0x0  |
 +----------+-------+
-    ```</p>
+```</p>
+</details>
 <h2 id="configuring-the-endpoint">Configuring the endpoint<a class="headerlink" href="#configuring-the-endpoint" title="Permanent link">&para;</a></h2>
 <p>First reset the Endpoint:</p>
 <div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml io $EPT reset
