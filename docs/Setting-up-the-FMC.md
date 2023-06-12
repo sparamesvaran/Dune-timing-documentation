@@ -144,7 +144,7 @@ You can use the above template, but you will need to edit the file to point to t
 	|    XAXB_ERR_FLG   |  0x1  |
 	+-------------------+-------+
 
-```
+	```
 
 Set the time of the FMC master block:
 
