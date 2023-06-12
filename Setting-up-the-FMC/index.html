@@ -520,78 +520,73 @@ Using Vivado or an alternative method, connect to the JTAG chain and program the
 </code></pre></div>
 </details>
 <p>Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.</p>
-<div class="highlight"><pre><span></span><code>```
+<div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml mst PRIMARY status 
 </code></pre></div>
-<p>dtsbutler -c connections.xml mst PRIMARY status </p>
-<div class="highlight"><pre><span></span><code>```
+<details class="info"><summary>Info</summary><div class="highlight"><pre><span></span><code><span class="n">Design</span> <span class="s1">&#39;master&#39;</span> <span class="n">on</span> <span class="n">board</span> <span class="s1">&#39;pc069&#39;</span> <span class="n">on</span> <span class="n">carrier</span> <span class="s1">&#39;nexus-video&#39;</span> <span class="k">with</span> <span class="n">frequency</span> <span class="mf">62.5</span> <span class="n">MHz</span>
+<span class="o">----------------</span><span class="n">Hardware</span> <span class="n">info</span><span class="o">----------------</span>
+<span class="o">+--------------------------+----------------+</span>
+<span class="o">|</span>        <span class="n">Board</span> <span class="nb">type</span>        <span class="o">|</span>      <span class="n">pc069</span>     <span class="o">|</span>
+<span class="o">|</span>      <span class="n">Board</span> <span class="n">revision</span>      <span class="o">|</span>     <span class="n">pc069a</span>     <span class="o">|</span>
+<span class="o">|</span>         <span class="n">Board</span> <span class="n">UID</span>        <span class="o">|</span> <span class="mh">0x803428749c04</span> <span class="o">|</span>
+<span class="o">|</span>       <span class="n">Carrier</span> <span class="nb">type</span>       <span class="o">|</span>   <span class="n">nexus</span><span class="o">-</span><span class="n">video</span>  <span class="o">|</span>
+<span class="o">|</span>        <span class="n">Design</span> <span class="nb">type</span>       <span class="o">|</span>     <span class="n">master</span>     <span class="o">|</span>
+<span class="o">|</span> <span class="n">Firmware</span> <span class="n">frequency</span> <span class="p">[</span><span class="n">MHz</span><span class="p">]</span> <span class="o">|</span>    <span class="mf">62.500000</span>   <span class="o">|</span>
+<span class="o">+--------------------------+----------------+</span>
 
-??? info 
-    ``` python
-    Design &#39;master&#39; on board &#39;pc069&#39; on carrier &#39;nexus-video&#39; with frequency 62.5 MHz
-----------------Hardware info----------------
-+--------------------------+----------------+
-|        Board type        |      pc069     |
-|      Board revision      |     pc069a     |
-|         Board UID        | 0x803428749c04 |
-|       Carrier type       |   nexus-video  |
-|        Design type       |     master     |
-| Firmware frequency [MHz] |    62.500000   |
-+--------------------------+----------------+
+<span class="n">Master</span> <span class="n">FW</span> <span class="n">rev</span><span class="p">:</span> <span class="n">v7</span><span class="o">.</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">channels</span><span class="p">:</span> <span class="mi">5</span>
+<span class="n">Timestamp</span><span class="p">:</span> <span class="mh">0x1766a893ba5014a</span> <span class="o">-&gt;</span> <span class="n">Thu</span><span class="p">,</span> <span class="mi">08</span> <span class="n">Jun</span> <span class="mi">2023</span> <span class="mi">11</span><span class="p">:</span><span class="mi">34</span><span class="p">:</span><span class="mi">22</span> <span class="o">+</span><span class="mi">0000</span>
 
-Master FW rev: v7.0.0, channels: 5
-Timestamp: 0x1766a893ba5014a -&gt; Thu, 08 Jun 2023 11:34:22 +0000
+<span class="n">Master</span> <span class="k">global</span> <span class="n">controls</span>
+<span class="o">+------------+-------+</span>
+<span class="o">|</span>  <span class="n">Register</span>  <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+------------+-------+</span>
+<span class="o">|</span>  <span class="n">clr_ctrs</span>  <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">resync</span>   <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span> <span class="n">resync_cdr</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>    <span class="n">ts_en</span>   <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">+------------+-------+</span>
+<span class="o">--</span><span class="n">Master</span> <span class="k">global</span> <span class="n">state</span><span class="o">-</span>
+<span class="o">+------------+-------+</span>
+<span class="o">|</span>  <span class="n">Register</span>  <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+------------+-------+</span>
+<span class="o">|</span> <span class="n">cdr_locked</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">ctrs_rdy</span>  <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">rx_rdy</span>   <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">ts_err</span>   <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>   <span class="n">tx_err</span>   <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">+------------+-------+</span>
 
-Master global controls
-+------------+-------+
-|  Register  | Value |
-+------------+-------+
-|  clr_ctrs  |  0x0  |
-|   resync   |  0x0  |
-| resync_cdr |  0x0  |
-|    ts_en   |  0x1  |
-+------------+-------+
---Master global state-
-+------------+-------+
-|  Register  | Value |
-+------------+-------+
-| cdr_locked |  0x0  |
-|  ctrs_rdy  |  0x1  |
-|   rx_rdy   |  0x0  |
-|   ts_err   |  0x0  |
-|   tx_err   |  0x0  |
-+------------+-------+
+<span class="o">--------------</span><span class="n">Cmd</span> <span class="n">gen</span> <span class="n">counters</span><span class="o">--------------</span>
+<span class="o">+------+-----------------+-----------------+</span>
+<span class="o">|</span>      <span class="o">|</span> <span class="n">Accept</span> <span class="n">counters</span> <span class="o">|</span> <span class="n">Reject</span> <span class="n">counters</span> <span class="o">|</span>
+<span class="o">+------+-----------------+-----------------+</span>
+<span class="o">|</span> <span class="n">Chan</span> <span class="o">|</span>  <span class="n">cnts</span>  <span class="o">|</span>   <span class="nb">hex</span>  <span class="o">|</span>  <span class="n">cnts</span>  <span class="o">|</span>   <span class="nb">hex</span>  <span class="o">|</span>
+<span class="o">+------+--------+--------+--------+--------+</span>
+<span class="o">|</span>  <span class="mh">0x0</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mh">0x1</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mh">0x2</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mh">0x3</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="mh">0x4</span> <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>    <span class="mi">0</span>   <span class="o">|</span>   <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">+------+--------+--------+--------+--------+</span>
 
---------------Cmd gen counters--------------
-+------+-----------------+-----------------+
-|      | Accept counters | Reject counters |
-+------+-----------------+-----------------+
-| Chan |  cnts  |   hex  |  cnts  |   hex  |
-+------+--------+--------+--------+--------+
-|  0x0 |    0   |   0x0  |    0   |   0x0  |
-|  0x1 |    0   |   0x0  |    0   |   0x0  |
-|  0x2 |    0   |   0x0  |    0   |   0x0  |
-|  0x3 |    0   |   0x0  |    0   |   0x0  |
-|  0x4 |    0   |   0x0  |    0   |   0x0  |
-+------+--------+--------+--------+--------+
+<span class="o">--</span><span class="n">Master</span> <span class="n">cmd</span> <span class="n">counters</span> <span class="p">(</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="o">-</span>
+<span class="o">+-----+-------------------+</span>
+<span class="o">|</span>     <span class="o">|</span> <span class="n">Sent</span> <span class="n">cmd</span> <span class="n">counters</span> <span class="o">|</span>
+<span class="o">+-----+-------------------+</span>
+<span class="o">|</span> <span class="n">Cmd</span> <span class="o">|</span>   <span class="n">cnts</span>  <span class="o">|</span>   <span class="nb">hex</span>   <span class="o">|</span>
+<span class="o">+-----+---------+---------+</span>
+<span class="o">|</span> <span class="mh">0x0</span> <span class="o">|</span>    <span class="mi">4</span>    <span class="o">|</span>   <span class="mh">0x4</span>   <span class="o">|</span>
+<span class="o">+-----+---------+---------+</span>
 
---Master cmd counters (&gt;0)-
-+-----+-------------------+
-|     | Sent cmd counters |
-+-----+-------------------+
-| Cmd |   cnts  |   hex   |
-+-----+---------+---------+
-| 0x0 |    4    |   0x4   |
-+-----+---------+---------+
-
--Master acmd buffer-
-+----------+-------+
-| Register | Value |
-+----------+-------+
-|   ready  |  0x1  |
-|  timeout |  0x0  |
-+----------+-------+
-```
+<span class="o">-</span><span class="n">Master</span> <span class="n">acmd</span> <span class="n">buffer</span><span class="o">-</span>
+<span class="o">+----------+-------+</span>
+<span class="o">|</span> <span class="n">Register</span> <span class="o">|</span> <span class="n">Value</span> <span class="o">|</span>
+<span class="o">+----------+-------+</span>
+<span class="o">|</span>   <span class="n">ready</span>  <span class="o">|</span>  <span class="mh">0x1</span>  <span class="o">|</span>
+<span class="o">|</span>  <span class="n">timeout</span> <span class="o">|</span>  <span class="mh">0x0</span>  <span class="o">|</span>
+<span class="o">+----------+-------+</span>
 </code></pre></div>
+</details>
 <h2 id="configuring-the-endpoint">Configuring the endpoint<a class="headerlink" href="#configuring-the-endpoint" title="Permanent link">&para;</a></h2>
 <p>First reset the Endpoint:</p>
 <div class="highlight"><pre><span></span><code>dtsbutler -c connections.xml io $EPT reset
