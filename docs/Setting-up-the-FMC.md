@@ -80,69 +80,69 @@ You can use the above template, but you will need to edit the file to point to t
 
 ??? info 
 	``` python
-Created device PRIMARY
-Design 'master' on board 'pc069' on carrier 'nexus-video' with frequency 62.5 MHz
-Resetting PRIMARY
-2023-Jun-07 14:49:11,171 LOG [dunedaq::timing::FMCIONode::reset(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/FMCIONode.cpp:85] PLL configuration file : /home/wx21978/projects/timing/temp/pc069_clock_file.txt
-2023-Jun-07 14:49:13,570 LOG [dunedaq::timing::FMCIONode::reset(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/FMCIONode.cpp:118] Reset done
-----------------Hardware info----------------
-+--------------------------+----------------+
-|        Board type        |      pc069     |
-|      Board revision      |     pc069a     |
-|         Board UID        | 0x803428749c04 |
-|       Carrier type       |   nexus-video  |
-|        Design type       |     master     |
-| Firmware frequency [MHz] |    62.500000   |
-+--------------------------+----------------+
+	Created device PRIMARY
+	Design 'master' on board 'pc069' on carrier 'nexus-video' with frequency 62.5 MHz
+	Resetting PRIMARY
+	2023-Jun-07 14:49:11,171 LOG [dunedaq::timing::FMCIONode::reset(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/FMCIONode.cpp:85] PLL configuration file : /home/wx21978/projects/timing/temp/pc069_clock_file.txt
+	2023-Jun-07 14:49:13,570 LOG [dunedaq::timing::FMCIONode::reset(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/FMCIONode.cpp:118] Reset done
+	----------------Hardware info----------------
+	+--------------------------+----------------+
+	|        Board type        |      pc069     |
+	|      Board revision      |     pc069a     |
+	|         Board UID        | 0x803428749c04 |
+	|       Carrier type       |   nexus-video  |
+	|        Design type       |     master     |
+	| Firmware frequency [MHz] |    62.500000   |
+	+--------------------------+----------------+
 
-------FMC IO state-----
-+-------------+-------+
-|   Register  | Value |
-+-------------+-------+
-|   cdr_lol   |  0x0  |
-|   cdr_los   |  0x0  |
-|   mmcm_ok   |  0x1  |
-| mmcm_sticky |  0x0  |
-|   sfp_flt   |  0x0  |
-|   sfp_los   |  0x1  |
-+-------------+-------+
-
-
-PLL Clock frequency measurement:
-PLL freq: 250.002006528
-CDR freq: 0
-SMPL freq: 0
+	------FMC IO state-----
+	+-------------+-------+
+	|   Register  | Value |
+	+-------------+-------+
+	|   cdr_lol   |  0x0  |
+	|   cdr_los   |  0x0  |
+	|   mmcm_ok   |  0x1  |
+	| mmcm_sticky |  0x0  |
+	|   sfp_flt   |  0x0  |
+	|   sfp_los   |  0x1  |
+	+-------------+-------+
 
 
-PLL configuration id   : 069a_mst
--------PLL information------
-+-----------------+--------+
-|     Register    |  Value |
-+-----------------+--------+
-|   Device grade  |   0x0  |
-| Device revision |   0x0  |
-|   Part number   | 0x5395 |
-+-----------------+--------+
+	PLL Clock frequency measurement:
+	PLL freq: 250.002006528
+	CDR freq: 0
+	SMPL freq: 0
 
-----------PLL state----------
-+-------------------+-------+
-|      Register     | Value |
-+-------------------+-------+
-|      CAL_PLL      |  0x0  |
-|        HOLD       |  0x1  |
-|        LOL        |  0x1  |
-|        LOS        |  0x0  |
-|      LOSXAXB      |  0x0  |
-|    LOSXAXB_FLG    |  0x1  |
-|        OOF        |  0x0  |
-|    OOF (sticky)   |  0xf  |
-|   SMBUS_TIMEOUT   |  0x0  |
-| SMBUS_TIMEOUT_FLG |  0x0  |
-|      SYSINCAL     |  0x0  |
-|    SYSINCAL_FLG   |  0x1  |
-|      XAXB_ERR     |  0x0  |
-|    XAXB_ERR_FLG   |  0x1  |
-+-------------------+-------+
+
+	PLL configuration id   : 069a_mst
+	-------PLL information------
+	+-----------------+--------+
+	|     Register    |  Value |
+	+-----------------+--------+
+	|   Device grade  |   0x0  |
+	| Device revision |   0x0  |
+	|   Part number   | 0x5395 |
+	+-----------------+--------+
+
+	----------PLL state----------
+	+-------------------+-------+
+	|      Register     | Value |
+	+-------------------+-------+
+	|      CAL_PLL      |  0x0  |
+	|        HOLD       |  0x1  |
+	|        LOL        |  0x1  |
+	|        LOS        |  0x0  |
+	|      LOSXAXB      |  0x0  |
+	|    LOSXAXB_FLG    |  0x1  |
+	|        OOF        |  0x0  |
+	|    OOF (sticky)   |  0xf  |
+	|   SMBUS_TIMEOUT   |  0x0  |
+	| SMBUS_TIMEOUT_FLG |  0x0  |
+	|      SYSINCAL     |  0x0  |
+	|    SYSINCAL_FLG   |  0x1  |
+	|      XAXB_ERR     |  0x0  |
+	|    XAXB_ERR_FLG   |  0x1  |
+	+-------------------+-------+
 
 ```
 
@@ -155,96 +155,96 @@ dtsbutler -c connections.xml mst PRIMARY synctime
 ??? info 
 	``` python
 		Created device PRIMARY
-Design 'master' on board 'pc069' on carrier 'nexus-video' with frequency 62.5 MHz
-----------------Hardware info----------------
-+--------------------------+----------------+
-|        Board type        |      pc069     |
-|      Board revision      |     pc069a     |
-|         Board UID        | 0x803428749c04 |
-|       Carrier type       |   nexus-video  |
-|        Design type       |     master     |
-| Firmware frequency [MHz] |    62.500000   |
-+--------------------------+----------------+
-
-Master FW rev: v7.0.0, channels: 5
-2023-Jun-08 11:34:18,205 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:295] Reading old timestamp: 0x9c4b92cd, Thu, 01 Jan 1970 01:00:41 +0000
-2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:298] Setting new timestamp: 0x1766a8929416240, Thu, 08 Jun 2023 11:34:18 +0000
-2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:303] Reading new timestamp: 0x1766a8929416e22, Thu, 08 Jun 2023 11:34:18 +0000
-2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:306] Timestamp broadcast enabled
-```
-
-Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.
-
-```
-dtsbutler -c connections.xml mst PRIMARY status 
-
-```
-
-??? info 
-	``` python
 	Design 'master' on board 'pc069' on carrier 'nexus-video' with frequency 62.5 MHz
-----------------Hardware info----------------
-+--------------------------+----------------+
-|        Board type        |      pc069     |
-|      Board revision      |     pc069a     |
-|         Board UID        | 0x803428749c04 |
-|       Carrier type       |   nexus-video  |
-|        Design type       |     master     |
-| Firmware frequency [MHz] |    62.500000   |
-+--------------------------+----------------+
+	----------------Hardware info----------------
+	+--------------------------+----------------+
+	|        Board type        |      pc069     |
+	|      Board revision      |     pc069a     |
+	|         Board UID        | 0x803428749c04 |
+	|       Carrier type       |   nexus-video  |
+	|        Design type       |     master     |
+	| Firmware frequency [MHz] |    62.500000   |
+	+--------------------------+----------------+
 
-Master FW rev: v7.0.0, channels: 5
-Timestamp: 0x1766a893ba5014a -> Thu, 08 Jun 2023 11:34:22 +0000
+	Master FW rev: v7.0.0, channels: 5
+	2023-Jun-08 11:34:18,205 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:295] Reading old timestamp: 0x9c4b92cd, Thu, 01 Jan 1970 01:00:41 +0000
+	2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:298] Setting new timestamp: 0x1766a8929416240, Thu, 08 Jun 2023 11:34:18 +0000
+	2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:303] Reading new timestamp: 0x1766a8929416e22, Thu, 08 Jun 2023 11:34:18 +0000
+	2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:306] Timestamp broadcast enabled
+	```
 
-Master global controls
-+------------+-------+
-|  Register  | Value |
-+------------+-------+
-|  clr_ctrs  |  0x0  |
-|   resync   |  0x0  |
-| resync_cdr |  0x0  |
-|    ts_en   |  0x1  |
-+------------+-------+
---Master global state-
-+------------+-------+
-|  Register  | Value |
-+------------+-------+
-| cdr_locked |  0x0  |
-|  ctrs_rdy  |  0x1  |
-|   rx_rdy   |  0x0  |
-|   ts_err   |  0x0  |
-|   tx_err   |  0x0  |
-+------------+-------+
+	Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.
 
---------------Cmd gen counters--------------
-+------+-----------------+-----------------+
-|      | Accept counters | Reject counters |
-+------+-----------------+-----------------+
-| Chan |  cnts  |   hex  |  cnts  |   hex  |
-+------+--------+--------+--------+--------+
-|  0x0 |    0   |   0x0  |    0   |   0x0  |
-|  0x1 |    0   |   0x0  |    0   |   0x0  |
-|  0x2 |    0   |   0x0  |    0   |   0x0  |
-|  0x3 |    0   |   0x0  |    0   |   0x0  |
-|  0x4 |    0   |   0x0  |    0   |   0x0  |
-+------+--------+--------+--------+--------+
+	```
+	dtsbutler -c connections.xml mst PRIMARY status 
 
---Master cmd counters (>0)-
-+-----+-------------------+
-|     | Sent cmd counters |
-+-----+-------------------+
-| Cmd |   cnts  |   hex   |
-+-----+---------+---------+
-| 0x0 |    4    |   0x4   |
-+-----+---------+---------+
+	```
 
--Master acmd buffer-
-+----------+-------+
-| Register | Value |
-+----------+-------+
-|   ready  |  0x1  |
-|  timeout |  0x0  |
-+----------+-------+
+	??? info 
+		``` python
+		Design 'master' on board 'pc069' on carrier 'nexus-video' with frequency 62.5 MHz
+	----------------Hardware info----------------
+	+--------------------------+----------------+
+	|        Board type        |      pc069     |
+	|      Board revision      |     pc069a     |
+	|         Board UID        | 0x803428749c04 |
+	|       Carrier type       |   nexus-video  |
+	|        Design type       |     master     |
+	| Firmware frequency [MHz] |    62.500000   |
+	+--------------------------+----------------+
+
+	Master FW rev: v7.0.0, channels: 5
+	Timestamp: 0x1766a893ba5014a -> Thu, 08 Jun 2023 11:34:22 +0000
+
+	Master global controls
+	+------------+-------+
+	|  Register  | Value |
+	+------------+-------+
+	|  clr_ctrs  |  0x0  |
+	|   resync   |  0x0  |
+	| resync_cdr |  0x0  |
+	|    ts_en   |  0x1  |
+	+------------+-------+
+	--Master global state-
+	+------------+-------+
+	|  Register  | Value |
+	+------------+-------+
+	| cdr_locked |  0x0  |
+	|  ctrs_rdy  |  0x1  |
+	|   rx_rdy   |  0x0  |
+	|   ts_err   |  0x0  |
+	|   tx_err   |  0x0  |
+	+------------+-------+
+
+	--------------Cmd gen counters--------------
+	+------+-----------------+-----------------+
+	|      | Accept counters | Reject counters |
+	+------+-----------------+-----------------+
+	| Chan |  cnts  |   hex  |  cnts  |   hex  |
+	+------+--------+--------+--------+--------+
+	|  0x0 |    0   |   0x0  |    0   |   0x0  |
+	|  0x1 |    0   |   0x0  |    0   |   0x0  |
+	|  0x2 |    0   |   0x0  |    0   |   0x0  |
+	|  0x3 |    0   |   0x0  |    0   |   0x0  |
+	|  0x4 |    0   |   0x0  |    0   |   0x0  |
+	+------+--------+--------+--------+--------+
+
+	--Master cmd counters (>0)-
+	+-----+-------------------+
+	|     | Sent cmd counters |
+	+-----+-------------------+
+	| Cmd |   cnts  |   hex   |
+	+-----+---------+---------+
+	| 0x0 |    4    |   0x4   |
+	+-----+---------+---------+
+
+	-Master acmd buffer-
+	+----------+-------+
+	| Register | Value |
+	+----------+-------+
+	|   ready  |  0x1  |
+	|  timeout |  0x0  |
+	+----------+-------+
 	```
 
 ##Configuring the endpoint
