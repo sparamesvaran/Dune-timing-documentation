@@ -152,6 +152,7 @@ Set the time of the FMC master block:
 dtsbutler -c connections.xml mst PRIMARY synctime
 
 ```
+
 ??? info 
 	``` python
 		Created device PRIMARY
@@ -173,10 +174,12 @@ dtsbutler -c connections.xml mst PRIMARY synctime
 	2023-Jun-08 11:34:18,207 LOG [dunedaq::timing::MasterNode::sync_timestamp(...) at /users/wx21978/projects/timing/daq_4.0.0/sourcecode/timing/src/MasterNode.cpp:306] Timestamp broadcast enabled
 	```
 
-	Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.
+
+Check status of timing master - - the TimeSync cnts number in the final table below shows the number of pulses sent.
 
 	```
-	dtsbutler -c connections.xml mst PRIMARY status 
+
+dtsbutler -c connections.xml mst PRIMARY status 
 
 	```
 
