@@ -1,4 +1,4 @@
-# This page is out of date, please go to https://github.com/DUNE-DAQ/timing/wiki/Setting-up-the-FMC
+# This page is out of date, please go to the [new site](https://github.com/DUNE-DAQ/timing/wiki/Setting-up-the-FMC)
 
 To enable testing and commissioning of the timing system, a timing FPGA mezzanine card(FMC) was designed and fabricated.  The FMC has SFP, Ethernet,  and  U.FL  connectors,  and  can  act  as  either  as  a  timing  master  or endpoint, depending on the firmware uploaded onto the carrier board FPGA. The carrier board can be either an Enclustra PX3/AX3 or a Digilent Nexsys Video card. There are different firmware images produced depending on which baseboard you have. 
 
